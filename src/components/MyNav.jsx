@@ -3,7 +3,7 @@ import { Container, Navbar, Nav, Form } from 'react-bootstrap'
 const MyNav = () => (
   <Navbar bg="light" expand="lg">
     <Container>
-      <Navbar.Brand href="#home">Questions</Navbar.Brand>
+      <Navbar.Brand href="/">Questions</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
@@ -111,7 +111,7 @@ const MyNav = () => (
             placeholder="What do you want to ask?"
             className="mt-2"
           />
-          <Nav.Link href="#link">
+          <Nav.Link href="profile">
             <img
               style={{ height: '40px' }}
               src="https://th.bing.com/th/id/OIP.w-L3HP_7QYalYXw7apT2tAHaHx?pid=ImgDet&rs=1"

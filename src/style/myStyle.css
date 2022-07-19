@@ -10,6 +10,9 @@ body {
 .blue-text {
   color: blue;
 }
+.large-text {
+  font-size: 1.7rem;
+}
 .smaller-text {
   font-size: 0.9rem;
 }
