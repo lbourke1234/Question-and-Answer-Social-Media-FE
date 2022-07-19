@@ -1,0 +1,24 @@
+body {
+  background-color: #f1f2f2;
+}
+.bold-text {
+  font-weight: 700;
+}
+.faded-text {
+  font-weight: 100;
+}
+.blue-text {
+  color: blue;
+}
+.smaller-text {
+  font-size: 0.9rem;
+}
+.white-background {
+  background-color: white;
+}
+.post-begin-text-box {
+  border-radius: 25px;
+}
+.profile-image {
+  border-radius: 50%;
+}
