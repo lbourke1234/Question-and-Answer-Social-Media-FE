@@ -1,8 +1,14 @@
+import { SET_BEARER_TOKEN } from '../actions'
+
 const initialState = {
-  user: ''
+  token: ''
 }
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SET_BEARER_TOKEN:
+      return {
+        token: action.payload
+      }
     default:
       return state
   }

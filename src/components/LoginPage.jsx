@@ -1,16 +1,22 @@
 import { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { setBearerTokenAction } from '../redux/actions'
 
 const LoginPage = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const loginData = {
     email,
     password
   }
 
-  const fetchLogin = async () => {
+  const fetchLogin = async (e) => {
+    e.preventDefault()
     const response = await fetch(process.env.REACT_APP_LOGIN_URL, {
       method: 'POST',
       headers: {
@@ -20,12 +26,17 @@ const LoginPage = () => {
     })
     if (response.ok) {
       const body = await response.json()
-      console.log(body)
+      console.log('body in login fetch', body)
+      localStorage.setItem('token', JSON.stringify(body.token))
+      dispatch(setBearerTokenAction(body.token))
+      navigate('/')
+    } else {
+      console.log('login not successful')
     }
   }
 
   return (
-    <Form onSubmit={fetchLogin}>
+    <Form onSubmit={(e) => fetchLogin(e)}>
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control
