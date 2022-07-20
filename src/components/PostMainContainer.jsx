@@ -1,9 +1,34 @@
 import { Container, Row, Col } from 'react-bootstrap'
-import { useDispatch } from 'react-redux'
-import { addLikeAndKudosAction } from '../redux/actions'
 
 const PostMainContainer = ({ post }) => {
-  const dispatch = useDispatch()
+  const token = localStorage.getItem('token')
+  const resizedToken = token.substring(1, token.length - 1)
+
+  const addLikeFetch = async () => {
+    const response = await fetch(process.env.REACT_APP_LIKE_POST_URL, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${resizedToken}`
+      }
+    })
+    if (response.ok) {
+      const body = await response.json()
+      console.log('like fetch', body)
+    }
+  }
+  const removeLikeFetch = async () => {
+    const response = await fetch(process.env.REACT_APP_UNLIKE_POST_URL, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${resizedToken}`
+      }
+    })
+    if (response.ok) {
+      const body = await response.json()
+      console.log('remove like fetch', body)
+    }
+  }
+
   return (
     <Container className="white-background pt-3 mt-3">
       <Row>
@@ -92,7 +117,7 @@ const PostMainContainer = ({ post }) => {
               fill="none"
               strokeLinecap="round"
               strokeLinejoin="round"
-              onClick={() => dispatch(addLikeAndKudosAction(post))}
+              onClick={() => addLikeFetch()}
             >
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" />
@@ -110,6 +135,7 @@ const PostMainContainer = ({ post }) => {
               fill="none"
               strokeLinecap="round"
               strokeLinejoin="round"
+              onClick={() => removeLikeFetch()}
             >
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path d="M7 13v-8a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v7a1 1 0 0 0 1 1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 4 0v-5h3a2 2 0 0 0 2 -2l-1 -5a2 3 0 0 0 -2 -2h-7a3 3 0 0 0 -3 3" />
