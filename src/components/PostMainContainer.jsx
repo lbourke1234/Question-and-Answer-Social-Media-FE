@@ -5,24 +5,30 @@ const PostMainContainer = ({ post }) => {
   const resizedToken = token.substring(1, token.length - 1)
 
   const addLikeFetch = async () => {
-    const response = await fetch(process.env.REACT_APP_LIKE_POST_URL, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${resizedToken}`
+    const response = await fetch(
+      `${process.env.REACT_APP_LIKES_BEGINNING_POST_URL}${post._id}/like`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${resizedToken}`
+        }
       }
-    })
+    )
     if (response.ok) {
       const body = await response.json()
       console.log('like fetch', body)
     }
   }
   const removeLikeFetch = async () => {
-    const response = await fetch(process.env.REACT_APP_UNLIKE_POST_URL, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${resizedToken}`
+    const response = await fetch(
+      `${process.env.REACT_APP_LIKES_BEGINNING_POST_URL}${post._id}/unlike`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${resizedToken}`
+        }
       }
-    })
+    )
     if (response.ok) {
       const body = await response.json()
       console.log('remove like fetch', body)
