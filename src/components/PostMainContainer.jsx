@@ -1,8 +1,11 @@
+import { useEffect } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 
 const PostMainContainer = ({ post }) => {
   const token = localStorage.getItem('token')
   const resizedToken = token.substring(1, token.length - 1)
+
+  useEffect(() => {}, [])
 
   const addLikeFetch = async () => {
     const response = await fetch(
@@ -48,7 +51,7 @@ const PostMainContainer = ({ post }) => {
           ></img>
         </Col>
 
-        <Col md={11} className="">
+        <Col md={11}>
           <Row>
             <Col>
               <span className="bold-text">{post.author}</span>
@@ -109,14 +112,14 @@ const PostMainContainer = ({ post }) => {
           )}
         </Col>
       </Row>
-      <Row className="py-2">
+      <Row className="py-3">
         <Col className="d-flex flex-direction-column align-items-center">
-          <span>
+          <span className="post-hover">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="icon icon-tabler icon-tabler-thumb-up mr-3 post-hover"
-              width="33"
-              height="33"
+              className="icon icon-tabler icon-tabler-thumb-up mr-3 "
+              width="26"
+              height="26"
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="#2c3e50"
@@ -129,12 +132,12 @@ const PostMainContainer = ({ post }) => {
               <path d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" />
             </svg>
           </span>
-          <span>
+          <span className="post-hover">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-thumb-down mr-3"
-              width="33"
-              height="33"
+              width="26"
+              height="26"
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="#2c3e50"
@@ -147,12 +150,14 @@ const PostMainContainer = ({ post }) => {
               <path d="M7 13v-8a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v7a1 1 0 0 0 1 1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 4 0v-5h3a2 2 0 0 0 2 -2l-1 -5a2 3 0 0 0 -2 -2h-7a3 3 0 0 0 -3 3" />
             </svg>
           </span>
-          <span>
+          <span>{post.likes}</span>
+
+          <span className="post-hover">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-share mr-3"
-              width="33"
-              height="33"
+              width="26"
+              height="26"
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="#2c3e50"
@@ -168,12 +173,12 @@ const PostMainContainer = ({ post }) => {
               <line x1="8.7" y1="13.3" x2="15.3" y2="16.7" />
             </svg>
           </span>
-          <span>
+          <span className="post-hover">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-message-dots"
-              width="33"
-              height="33"
+              width="26"
+              height="26"
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="#2c3e50"
@@ -190,12 +195,12 @@ const PostMainContainer = ({ post }) => {
           </span>
         </Col>
         <Col className="d-flex justify-content-end">
-          <span>
+          <span className="post-hover">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-dots"
-              width="44"
-              height="44"
+              width="26"
+              height="26"
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="#2c3e50"

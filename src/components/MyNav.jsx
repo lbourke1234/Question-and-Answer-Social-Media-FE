@@ -6,13 +6,13 @@ const MyNav = () => (
       <Navbar.Brand href="/">Questions</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="me-auto">
+        <Nav className="">
           <Nav.Link href="#home">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-home"
-              width="44"
-              height="44"
+              width="33"
+              height="33"
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="#2c3e50"
@@ -30,8 +30,8 @@ const MyNav = () => (
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-list"
-              width="44"
-              height="44"
+              width="33"
+              height="33"
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="#2c3e50"
@@ -52,8 +52,8 @@ const MyNav = () => (
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-bell"
-              width="44"
-              height="44"
+              width="33"
+              height="33"
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="#2c3e50"
@@ -70,8 +70,8 @@ const MyNav = () => (
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-friends"
-              width="44"
-              height="44"
+              width="33"
+              height="33"
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="#2c3e50"
@@ -90,8 +90,8 @@ const MyNav = () => (
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-question-mark"
-              width="44"
-              height="44"
+              width="33"
+              height="33"
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="#2c3e50"

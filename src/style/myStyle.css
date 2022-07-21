@@ -25,6 +25,7 @@ body {
 .profile-image {
   border-radius: 50%;
 }
-/* .post-hover:hover {
-  color: blue;
-} */
+.post-hover:hover {
+  cursor: pointer;
+  background-color: gray;
+}
