@@ -4,17 +4,24 @@ import PostMainContainer from './PostMainContainer'
 import LeftCategories from './LeftCategories'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setPostDataAction, setProfileDataAction } from '../redux/actions/index.js'
+import {
+  setCategoriesAction,
+  setPostDataAction,
+  setProfileDataAction
+} from '../redux/actions/index.js'
 
 const NewsFeed = () => {
   const dispatch = useDispatch()
-  const allPosts = useSelector((state) => state.posts.postData)
-  const [profileData, setProfileData] = useState({
-    avatar: '',
-    email: '',
-    name: '',
-    _id: ''
-  })
+
+  const allPosts = useSelector((state) => state.posts)
+  const allCategories = useSelector((state) => state.categories)
+
+  // const [profileData, setProfileData] = useState({
+  //   avatar: '',
+  //   email: '',
+  //   name: '',
+  //   _id: ''
+  // })
 
   const token = localStorage.getItem('token')
   const resizedToken = token.substring(1, token.length - 1)
@@ -28,7 +35,7 @@ const NewsFeed = () => {
     if (response.ok) {
       const body = await response.json()
       console.log('body in profile fetch', body)
-      setProfileData(body)
+      // setProfileData(body)
       dispatch(setProfileDataAction(body))
     }
   }
@@ -45,16 +52,33 @@ const NewsFeed = () => {
     }
   }
 
+  const fetchCategories = async () => {
+    const response = await fetch(process.env.REACT_APP_GET_CATEGORIES)
+    if (response.ok) {
+      const body = await response.json()
+      console.log('categories', body)
+      dispatch(setCategoriesAction(body))
+    }
+  }
+
   useEffect(() => {
     fetchPostData()
     fetchProfileData()
+    fetchCategories()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  // useEffect(() => {
+
+  // }, [allPosts])
+
   return (
     <Container>
       <Row>
         <Col md={2}>
-          <LeftCategories />
+          {allCategories.map((category) => (
+            <LeftCategories key={category._id} category={category} />
+          ))}
         </Col>
         <Col md={7}>
           <PostBegin />

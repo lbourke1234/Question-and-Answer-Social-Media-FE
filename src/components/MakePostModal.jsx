@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import { Form } from 'react-bootstrap'
+import { useDispatch } from 'react-redux/es/hooks/useDispatch'
+import { setPostDataAction } from '../redux/actions'
 
 const MakePostModal = ({ token }) => {
+  const dispatch = useDispatch()
   const [show, setShow] = useState(false)
 
   const handleClose = () => setShow(false)
@@ -56,6 +59,7 @@ const MakePostModal = ({ token }) => {
     })
     if (response.ok) {
       const body = await response.json()
+      dispatch(setPostDataAction(body))
       console.log('body of post', body)
     } else {
       console.log('problem posting question')

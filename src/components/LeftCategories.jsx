@@ -1,8 +1,17 @@
 import { Row, Col } from 'react-bootstrap'
 
-const LeftCategories = () => (
-  <>
-    <Row className="my-2 post-hover">
+const LeftCategories = ({ category }) => (
+  <Row className="my-2 post-hover">
+    <Col md={1}>
+      {console.log(category)}
+      <img style={{ height: '20px' }} src={category.image} alt="placeholder"></img>
+    </Col>
+    <Col md={9}>
+      <span className="faded-text smaller-text">{category.name}</span>
+    </Col>
+  </Row>
+
+  /* <Row className="my-2 post-hover">
       <Col md={1}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -274,8 +283,7 @@ const LeftCategories = () => (
       <Col md={9}>
         <span className="faded-text smaller-text">Free Speech</span>
       </Col>
-    </Row>
-  </>
+    </Row> */
 )
 
 export default LeftCategories
