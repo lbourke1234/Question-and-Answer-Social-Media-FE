@@ -5,7 +5,9 @@ const PostMainContainer = ({ post }) => {
   const token = localStorage.getItem('token')
   const resizedToken = token.substring(1, token.length - 1)
 
-  useEffect(() => {}, [])
+  useEffect(() => {
+    console.log('post is liked')
+  }, [post.likes])
 
   const addLikeFetch = async () => {
     const response = await fetch(
@@ -44,9 +46,7 @@ const PostMainContainer = ({ post }) => {
         <Col md={1}>
           <img
             style={{ height: '40px' }}
-            src={
-              'https://th.bing.com/th/id/OIP.w-L3HP_7QYalYXw7apT2tAHaHx?pid=ImgDet&rs=1'
-            }
+            src={post.author.avatar}
             alt="placeholder"
           ></img>
         </Col>
@@ -54,7 +54,7 @@ const PostMainContainer = ({ post }) => {
         <Col md={11}>
           <Row>
             <Col>
-              <span className="bold-text">{post.author}</span>
+              <span className="bold-text">{post.author.name}</span>
               <span className="mx-2">.</span>
               <span className="blue-text">Follow</span>
             </Col>

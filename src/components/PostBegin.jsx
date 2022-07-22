@@ -1,7 +1,9 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import MakePostModal from './MakePostModal'
+import { useSelector } from 'react-redux/es/exports'
 
 const PostBegin = () => {
+  const profileData = useSelector((state) => state.profile)
   const token = localStorage.getItem('token')
   const resizedToken = token.substring(1, token.length - 1)
 
@@ -11,7 +13,7 @@ const PostBegin = () => {
         <Col md={2}>
           <img
             style={{ height: '40px' }}
-            src="https://irisvision.com/wp-content/uploads/2019/01/no-profile-1-1024x1024.png"
+            src={profileData.avatar}
             alt="placeholder"
             className="profile-image"
           ></img>
