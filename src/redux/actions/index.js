@@ -4,6 +4,8 @@ export const ADD_LIKE_AND_KUDOS = 'ADD_LIKE_AND_KUDOS'
 export const REMOVE_LIKE_AND_KUDOS = 'REMOVE_LIKE_AND_KUDOS'
 export const SET_PROFILE_DATA = 'SET_PROFILE_DATA'
 export const SET_CATEGORIES_DATA = 'SET_CATEGORIES_DATA'
+export const SET_CURRENT_CATEGORY = 'SET_CURRENT_CATEGORY'
+export const SET_CURRENT_CATEGORY_QUESTIONS = 'SET_CURRENT_CATEGORY_QUESTIONS'
 
 export const setBearerTokenAction = (token) => ({
   type: SET_BEARER_TOKEN,
@@ -20,6 +22,14 @@ export const setProfileDataAction = (body) => ({
 export const setCategoriesAction = (categories) => ({
   type: SET_CATEGORIES_DATA,
   payload: categories
+})
+export const setCurrentCategoryAction = (category) => ({
+  type: SET_CURRENT_CATEGORY,
+  payload: category
+})
+export const setCurrentCategoryQuestionsAction = (questions) => ({
+  type: SET_CURRENT_CATEGORY_QUESTIONS,
+  payload: questions
 })
 // export const addLikeAndKudosAction = (post) => ({
 //   type: ADD_LIKE_AND_KUDOS,

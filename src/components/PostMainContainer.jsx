@@ -1,7 +1,10 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
+import Comments from './Comments'
 
 const PostMainContainer = ({ post }) => {
+  const [commentOpen, setCommentsOpen] = useState(false)
+
   const token = localStorage.getItem('token')
   const resizedToken = token.substring(1, token.length - 1)
 
@@ -56,7 +59,9 @@ const PostMainContainer = ({ post }) => {
             <Col>
               <span className="bold-text">{post.author.name}</span>
               <span className="mx-2">.</span>
-              <span className="blue-text">Follow</span>
+              <a href="/" id={post._id}>
+                <span className="blue-text">Follow</span>
+              </a>
             </Col>
             <Col className="d-flex justify-content-end">
               <span>
@@ -100,14 +105,12 @@ const PostMainContainer = ({ post }) => {
           </Row>
           {post.content.image && (
             <Row>
-              <Col>
-                <img
-                  style={{ height: '600px', width: '100%' }}
-                  src={post.content.image}
-                  alt="placeholder"
-                  className="mt-2"
-                ></img>
-              </Col>
+              <img
+                style={{ height: '600px', width: '100%' }}
+                src={post.content.image}
+                alt="placeholder"
+                className="mt-2"
+              ></img>
             </Row>
           )}
         </Col>
@@ -185,6 +188,7 @@ const PostMainContainer = ({ post }) => {
               fill="none"
               strokeLinecap="round"
               strokeLinejoin="round"
+              onClick={() => setCommentsOpen(!commentOpen)}
             >
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path d="M4 21v-13a3 3 0 0 1 3 -3h10a3 3 0 0 1 3 3v6a3 3 0 0 1 -3 3h-9l-4 4" />
@@ -216,6 +220,7 @@ const PostMainContainer = ({ post }) => {
           </span>
         </Col>
       </Row>
+      <Row>{commentOpen && <Comments post={post._id} />}</Row>
     </Container>
   )
 }

@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 body {
   background-color: #f1f2f2;
 }
@@ -28,4 +31,17 @@ body {
 .post-hover:hover {
   cursor: pointer;
   background-color: gray;
+}
+.navBar-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.categories-sticky {
+  position: sticky;
+  top: 80px;
+}
+.recent-posts-sticky {
+  position: sticky;
+  top: 80px;
 }

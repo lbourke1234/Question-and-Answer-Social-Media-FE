@@ -5,7 +5,7 @@ const MyNav = () => {
   const profileData = useSelector((state) => state.profile)
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="lg" className="navBar-sticky">
       <Container>
         <Navbar.Brand href="/">Questions</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
