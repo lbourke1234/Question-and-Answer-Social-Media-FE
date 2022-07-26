@@ -5,6 +5,8 @@ import profileReducer from '../reducers/profile'
 import categoriesReducer from '../reducers/categories'
 import currentCategoryReducer from '../reducers/currentCategory'
 import currentCategoryQuestionsReducer from '../reducers/currentCategoryQuestions'
+import currentPostCommentsReducer from '../reducers/currentPostComments'
+import likesCountReducer from '../reducers/likesCount'
 
 const bigReducer = combineReducers({
   user: userReducer,
@@ -12,7 +14,9 @@ const bigReducer = combineReducers({
   profile: profileReducer,
   categories: categoriesReducer,
   currentCategory: currentCategoryReducer,
-  currentCategoryQuestions: currentCategoryQuestionsReducer
+  currentCategoryQuestions: currentCategoryQuestionsReducer,
+  currentPostComments: currentPostCommentsReducer,
+  likesCount: likesCountReducer
 })
 
 const store = configureStore({

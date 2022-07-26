@@ -6,6 +6,8 @@ export const SET_PROFILE_DATA = 'SET_PROFILE_DATA'
 export const SET_CATEGORIES_DATA = 'SET_CATEGORIES_DATA'
 export const SET_CURRENT_CATEGORY = 'SET_CURRENT_CATEGORY'
 export const SET_CURRENT_CATEGORY_QUESTIONS = 'SET_CURRENT_CATEGORY_QUESTIONS'
+export const SET_CURRENT_POST_COMMENTS = 'SET_CURRENT_POST_COMMENTS'
+export const SET_LIKES_COUNT = 'SET_LIKES_COUNT'
 
 export const setBearerTokenAction = (token) => ({
   type: SET_BEARER_TOKEN,
@@ -30,6 +32,14 @@ export const setCurrentCategoryAction = (category) => ({
 export const setCurrentCategoryQuestionsAction = (questions) => ({
   type: SET_CURRENT_CATEGORY_QUESTIONS,
   payload: questions
+})
+export const setCurrentPostCommentsAction = (comments) => ({
+  type: SET_CURRENT_POST_COMMENTS,
+  payload: comments
+})
+export const setLikesCountAction = (count) => ({
+  type: SET_LIKES_COUNT,
+  payload: count
 })
 // export const addLikeAndKudosAction = (post) => ({
 //   type: ADD_LIKE_AND_KUDOS,

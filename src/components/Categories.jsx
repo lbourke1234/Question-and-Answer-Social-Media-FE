@@ -62,16 +62,13 @@ const Categories = () => {
         <Col>
           {console.log('categories new', currentCategory)}
           <Jumbotron fluid>
-            <Container>
+            <Container className="jumbotron-text-container">
               <h1>{location.state.name}</h1>
-              <p>
-                This is a modified jumbotron that occupies the entire horizontal space of
-                its parent.
-              </p>
+              <p>{currentCategory.description}</p>
             </Container>
           </Jumbotron>
           {catQuestions.map((q) => (
-            <PostMainContainer post={q} />
+            <PostMainContainer key={q._id} post={q} />
           ))}
         </Col>
       </Row>

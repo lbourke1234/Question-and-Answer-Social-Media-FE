@@ -8,7 +8,7 @@ const PostBegin = () => {
   const resizedToken = token.substring(1, token.length - 1)
 
   return (
-    <Container className="mt-3 pt-3 white-background">
+    <Container className="mt-3 pt-3 white-background slight-border-radius">
       <Row>
         <Col md={2}>
           <img

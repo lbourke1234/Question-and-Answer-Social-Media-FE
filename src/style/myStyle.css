@@ -22,8 +22,8 @@ body {
 .white-background {
   background-color: white;
 }
-.post-begin-text-box {
-  border-radius: 25px;
+.slight-border-radius {
+  border-radius: 10px;
 }
 .profile-image {
   border-radius: 50%;
@@ -44,4 +44,15 @@ body {
 .recent-posts-sticky {
   position: sticky;
   top: 80px;
+}
+.jumbotron-text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.my-flex-grow {
+  flex-grow: 1;
+}
+.comment-button {
+  font-size: 14px;
 }

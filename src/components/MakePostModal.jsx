@@ -82,20 +82,19 @@ const MakePostModal = ({ token }) => {
           <Modal.Title>Post your Question</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Label>Question Title</Form.Label>
+          <Form.Label className="modal-title-text">Title</Form.Label>
           <Form.Control
             type="text"
-            aria-describedby="passwordHelpBlock"
-            placeholder="What do you want to ask?"
-            className="post-begin-text-box"
+            placeholder="Yout title goes here"
+            className="slight-border-radius"
             onChange={(e) => setHeading(e.target.value)}
           />
-          <Form.Label>Question Body</Form.Label>
+          <Form.Label className="modal-title-text">Write your question here</Form.Label>
           <Form.Control
-            type="text-box"
-            aria-describedby="passwordHelpBlock"
+            as="textarea"
+            rows="4"
             placeholder="What do you want to ask?"
-            className="post-begin-text-box"
+            className="slight-border-radius"
             onChange={(e) => setPostBody(e.currentTarget.value)}
           />
         </Modal.Body>

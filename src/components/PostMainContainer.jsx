@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { setLikesCountAction } from '../redux/actions'
 import Comments from './Comments'
 
 const PostMainContainer = ({ post }) => {
+  const dispatch = useDispatch()
+  const likesCount = useSelector((state) => state.likesCount)
+
   const [commentOpen, setCommentsOpen] = useState(false)
 
   const token = localStorage.getItem('token')
   const resizedToken = token.substring(1, token.length - 1)
-
-  useEffect(() => {
-    console.log('post is liked')
-  }, [post.likes])
 
   const addLikeFetch = async () => {
     const response = await fetch(
@@ -25,6 +26,9 @@ const PostMainContainer = ({ post }) => {
     if (response.ok) {
       const body = await response.json()
       console.log('like fetch', body)
+      if (body.post) {
+        dispatch(setLikesCountAction(body.post.likes))
+      }
     }
   }
   const removeLikeFetch = async () => {
@@ -40,11 +44,19 @@ const PostMainContainer = ({ post }) => {
     if (response.ok) {
       const body = await response.json()
       console.log('remove like fetch', body)
+      if (body.post) {
+        dispatch(setLikesCountAction(body.post.likes))
+      }
     }
   }
 
+  useEffect(() => {
+    dispatch(setLikesCountAction(post.likes))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
-    <Container className="white-background pt-3 mt-3">
+    <Container className="white-background pt-3 mt-3 slight-border-radius">
       <Row>
         <Col md={1}>
           <img
@@ -153,7 +165,7 @@ const PostMainContainer = ({ post }) => {
               <path d="M7 13v-8a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v7a1 1 0 0 0 1 1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 4 0v-5h3a2 2 0 0 0 2 -2l-1 -5a2 3 0 0 0 -2 -2h-7a3 3 0 0 0 -3 3" />
             </svg>
           </span>
-          <span>{post.likes}</span>
+          <span>{likesCount}</span>
 
           <span className="post-hover">
             <svg
@@ -220,7 +232,7 @@ const PostMainContainer = ({ post }) => {
           </span>
         </Col>
       </Row>
-      <Row>{commentOpen && <Comments post={post._id} />}</Row>
+      <Row>{commentOpen && <Comments post={post._id} fullPost={post} />}</Row>
     </Container>
   )
 }
