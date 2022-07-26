@@ -9,7 +9,7 @@ const RecentPostsContainer = ({ posts }) => {
       </Row>
       <Row>
         {posts.slice(0, 5).map((post) => (
-          <a href={`#${post._id}`} key={post._id}>
+          <a className="recent-sidebar-a" href={`#${post._id}`} key={post._id}>
             <RecentPosts key={post._id} post={post} />
           </a>
         ))}

@@ -112,6 +112,7 @@ const SingleComment = ({ comment }) => {
             </Col>
           </Row>
         </Row>
+        {/* <hr /> */}
       </Col>
     </>
   )

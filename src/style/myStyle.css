@@ -56,3 +56,11 @@ body {
 .comment-button {
   font-size: 14px;
 }
+.recent-sidebar-a {
+  width: 100%;
+  color: black;
+}
+.recent-sidebar-a:hover {
+  text-decoration: none;
+  color: black;
+}

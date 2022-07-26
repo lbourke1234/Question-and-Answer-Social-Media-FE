@@ -14,6 +14,7 @@ const MakePostModal = ({ token }) => {
 
   const [heading, setHeading] = useState('')
   const [postBody, setPostBody] = useState('')
+  const [category, setCategory] = useState('')
 
   const [profileData, setProfileData] = useState({
     avatar: '',
@@ -40,9 +41,22 @@ const MakePostModal = ({ token }) => {
 
   const fullPostBody = {
     author: profileData._id,
+    category,
     content: {
       heading,
       question: postBody
+    }
+  }
+
+  const fetchPostData = async () => {
+    const response = await fetch(process.env.REACT_APP_GET_POST_URL, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    if (response.ok) {
+      const body = await response.json()
+      dispatch(setPostDataAction(body))
     }
   }
 
@@ -59,7 +73,8 @@ const MakePostModal = ({ token }) => {
     })
     if (response.ok) {
       const body = await response.json()
-      dispatch(setPostDataAction(body))
+      // dispatch(setPostDataAction(body))
+      fetchPostData()
       console.log('body of post', body)
     } else {
       console.log('problem posting question')
@@ -89,6 +104,21 @@ const MakePostModal = ({ token }) => {
             className="slight-border-radius"
             onChange={(e) => setHeading(e.target.value)}
           />
+          <Form.Label className="modal-title-text">Choose a category</Form.Label>
+          <Form.Control
+            as="select"
+            className="slight-border-radius"
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option></option>
+            <option>Philosophy</option>
+            <option>Religion</option>
+            <option>Free Speech</option>
+            <option>Technology</option>
+            <option>Sports</option>
+            <option>Politics</option>
+            <option>Health & Wellness</option>
+          </Form.Control>
           <Form.Label className="modal-title-text">Write your question here</Form.Label>
           <Form.Control
             as="textarea"

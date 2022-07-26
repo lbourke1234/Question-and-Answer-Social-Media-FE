@@ -7,6 +7,7 @@ import {
   setCurrentCategoryAction,
   setCurrentCategoryQuestionsAction
 } from '../redux/actions'
+import CategoryDetails from './CategoryDetails'
 
 const Categories = () => {
   const currentCategory = useSelector((state) => state.currentCategory)
@@ -57,22 +58,26 @@ const Categories = () => {
   }, [])
 
   return (
-    <Container>
-      <Row>
-        <Col>
-          {console.log('categories new', currentCategory)}
-          <Jumbotron fluid>
-            <Container className="jumbotron-text-container">
-              <h1>{location.state.name}</h1>
-              <p>{currentCategory.description}</p>
-            </Container>
-          </Jumbotron>
-          {catQuestions.map((q) => (
-            <PostMainContainer key={q._id} post={q} />
-          ))}
-        </Col>
-      </Row>
-    </Container>
+    <>
+      <Jumbotron fluid>
+        <Container className="jumbotron-text-container">
+          <h1>{location.state.name}</h1>
+          <p>{currentCategory.description}</p>
+        </Container>
+      </Jumbotron>
+      <Container>
+        <Row>
+          <Col md={9}>
+            {catQuestions.map((q) => (
+              <PostMainContainer key={q._id} post={q} />
+            ))}
+          </Col>
+          <Col md={3}>
+            <CategoryDetails />
+          </Col>
+        </Row>
+      </Container>
+    </>
   )
 }
 export default Categories
