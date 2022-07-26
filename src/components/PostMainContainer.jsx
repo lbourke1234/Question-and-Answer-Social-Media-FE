@@ -28,6 +28,7 @@ const PostMainContainer = ({ post }) => {
       console.log('like fetch', body)
       if (body.post) {
         dispatch(setLikesCountAction(body.post.likes))
+        
       }
     }
   }
