@@ -1,17 +1,33 @@
 import { useEffect, useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setLikesCountAction } from '../redux/actions'
 import Comments from './Comments'
+import { format, compareAsc } from 'date-fns'
 
 const PostMainContainer = ({ post }) => {
   const dispatch = useDispatch()
-  const likesCount = useSelector((state) => state.likesCount)
+  const [likesCount, setLikesCount] = useState('')
 
   const [commentOpen, setCommentsOpen] = useState(false)
 
   const token = localStorage.getItem('token')
   const resizedToken = token.substring(1, token.length - 1)
+
+  const fetchLikesCount = async () => {
+    const response = await fetch(
+      `${process.env.REACT_APP_LIKES_BEGINNING_POST_URL}${post._id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${resizedToken}`
+        }
+      }
+    )
+    if (response.ok) {
+      const body = await response.json()
+      setLikesCount(body.likes)
+    }
+  }
 
   const addLikeFetch = async () => {
     const response = await fetch(
@@ -27,8 +43,9 @@ const PostMainContainer = ({ post }) => {
       const body = await response.json()
       console.log('like fetch', body)
       if (body.post) {
-        dispatch(setLikesCountAction(body.post.likes))
-        
+        console.log('likes count like', body.post.likes)
+
+        setLikesCount(body.post.likes)
       }
     }
   }
@@ -44,15 +61,17 @@ const PostMainContainer = ({ post }) => {
     )
     if (response.ok) {
       const body = await response.json()
-      console.log('remove like fetch', body)
-      if (body.post) {
-        dispatch(setLikesCountAction(body.post.likes))
+      console.log('remove like fetch body', body)
+      console.log('likes count dislike', body.likes)
+      if (body.likes >= 0) {
+        setLikesCount(body.likes)
       }
     }
   }
 
   useEffect(() => {
     dispatch(setLikesCountAction(post.likes))
+    fetchLikesCount()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -99,9 +118,11 @@ const PostMainContainer = ({ post }) => {
           </Row>
           <Row>
             <Col>
-              <span className="faded-text smaller-text">Some info about person</span>
+              <span className="faded-text smaller-text">{post.category}</span>
               <span className="mx-2">.</span>
-              <span className="faded-text smaller-text">More info</span>
+              <span className="faded-text smaller-text">
+                {format(new Date(post.createdAt), 'PPp')}
+              </span>
             </Col>
           </Row>
         </Col>

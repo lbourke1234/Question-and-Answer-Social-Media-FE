@@ -64,3 +64,9 @@ body {
   text-decoration: none;
   color: black;
 }
+/* .best-comment {
+  background-color: gray;
+} */
+.add-comment-bg {
+  background: rgb(234, 233, 233);
+}

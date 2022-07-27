@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Col, Row, Button, Form } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { setCurrentPostCommentsAction } from '../redux/actions'
+import { addNewCommentAction, setCurrentPostCommentsAction } from '../redux/actions'
 import SingleComment from './SingleComment'
 
 const Comments = ({ post, fullPost }) => {
@@ -35,7 +35,7 @@ const Comments = ({ post, fullPost }) => {
     if (response.ok) {
       const body = await response.json()
       console.log('body of new comment', body)
-      fetchComments(post)
+      dispatch(addNewCommentAction(body))
     }
   }
 
@@ -43,7 +43,7 @@ const Comments = ({ post, fullPost }) => {
     const response = await fetch(process.env.REACT_APP_GET_POST_COMMENTS + id)
     if (response.ok) {
       const body = await response.json()
-      // console.log(body)
+      console.log('fetch comment', body)
       // setComments(body)
       dispatch(setCurrentPostCommentsAction(body))
     }
@@ -57,7 +57,7 @@ const Comments = ({ post, fullPost }) => {
   return (
     <Col>
       {profileData && (
-        <Row>
+        <Row className="py-2 add-comment-bg">
           <Col md={1}>
             <img
               style={{ height: '40px' }}
@@ -89,7 +89,7 @@ const Comments = ({ post, fullPost }) => {
       {comments.length > 0 &&
         comments.map((comment, index) => (
           <Row key={index}>
-            <SingleComment comment={comment} />
+            <SingleComment comment={comment} index={index} />
           </Row>
         ))}
     </Col>
