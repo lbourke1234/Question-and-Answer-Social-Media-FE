@@ -57,16 +57,19 @@ const Categories = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const imageUrl = currentCategory.image
+  console.log(imageUrl)
+
   return (
     <>
       <Jumbotron
         fluid
         className="jumbotron-categories"
-        // style={{ backgroundImage: `url (../../images/Philosophy.jpg)` }}
+        style={{ backgroundImage: 'url(' + imageUrl + ')' }}
       >
         <Container className="jumbotron-text-container">
           <h1>{location.state.name}</h1>
-          <p>{currentCategory.description}</p>
+          {/* <p>{currentCategory.description}</p> */}
         </Container>
       </Jumbotron>
       <Container>
@@ -77,7 +80,7 @@ const Categories = () => {
             ))}
           </Col>
           <Col md={3}>
-            <CategoryDetails />
+            <CategoryDetails currentCategory={currentCategory} />
           </Col>
         </Row>
       </Container>

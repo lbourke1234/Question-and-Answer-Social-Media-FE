@@ -65,11 +65,14 @@ body {
   color: black;
 }
 .best-comment {
-  background-color: rgb(251, 232, 232);
+  background-color: rgb(241, 254, 230);
 }
 .add-comment-bg {
   background: rgb(234, 233, 233);
 }
-.jumbotron-categories {
+/* .jumbotron-categories {
   background-image: url('../../images/Philosophy.jpg');
+} */
+.bc-left {
+  border-left: solid green;
 }

@@ -8,8 +8,7 @@ const SingleComment = ({ comment, index }) => {
   const token = localStorage.getItem('token')
   const resizedToken = token.substring(1, token.length - 1)
   const [bestComment, setBestComment] = useState(false)
-  const profileDate = useSelector((state) => state.profile)
-
+  const profileData = useSelector((state) => state.profile)
   const [likesCount, setLikesCount] = useState('')
 
   const fetchLikesCount = async () => {
@@ -20,7 +19,6 @@ const SingleComment = ({ comment, index }) => {
     })
     if (response.ok) {
       const body = await response.json()
-      console.log('did mount body', body)
       setLikesCount(body.likes)
     }
   }
@@ -63,11 +61,10 @@ const SingleComment = ({ comment, index }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const profileData = useSelector((state) => state.profile)
   return (
     <>
       {bestComment && comment.likes > 0 ? (
-        <Col md={2} className="best-comment d-flex justify-content-center pt-2">
+        <Col md={2} className="best-comment d-flex justify-content-center pt-2 bc-left">
           <img
             style={{ height: '60px', borderRadius: '50%' }}
             src={profileData.avatar}
@@ -229,7 +226,9 @@ const SingleComment = ({ comment, index }) => {
                 </span>
                 <span>{likesCount}</span>
               </Col>
-              {profileData._id === comment.author && <ModalReadyToEditComment />}
+              {profileData._id === comment.author && (
+                <ModalReadyToEditComment comment={comment} />
+              )}
             </Row>
           </Row>
         </Col>

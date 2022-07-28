@@ -13,7 +13,6 @@ const RecentPostsContainer = ({ posts }) => {
     })
     if (response.ok) {
       const body = await response.json()
-      console.log('body fethc post by date', body)
       setRecentPosts(body)
     }
   }
@@ -25,8 +24,6 @@ const RecentPostsContainer = ({ posts }) => {
   return (
     <Container className="recent-posts-sticky">
       <Row>
-        {console.log('recent posts', recentPosts)}
-        {console.log('posts', posts)}
         <h2>Recent Posts</h2>
       </Row>
       <Row>
