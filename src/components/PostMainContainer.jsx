@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { setLikesCountAction } from '../redux/actions'
 import Comments from './Comments'
-import { format, compareAsc } from 'date-fns'
+import { format } from 'date-fns'
 
 const PostMainContainer = ({ post }) => {
   const dispatch = useDispatch()
@@ -121,7 +121,7 @@ const PostMainContainer = ({ post }) => {
               <span className="faded-text smaller-text">{post.category}</span>
               <span className="mx-2">.</span>
               <span className="faded-text smaller-text">
-                {format(new Date(post.createdAt), 'PPp')}
+                {format(new Date(post.createdAt), 'MMM d kk:mm')}
               </span>
             </Col>
           </Row>

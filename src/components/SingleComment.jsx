@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
+import { format } from 'date-fns'
+import ModalReadyToEditComment from './ModalReadyToEditComment'
 
 const SingleComment = ({ comment, index }) => {
   const token = localStorage.getItem('token')
   const resizedToken = token.substring(1, token.length - 1)
   const [bestComment, setBestComment] = useState(false)
+  const profileDate = useSelector((state) => state.profile)
 
   const [likesCount, setLikesCount] = useState('')
 
@@ -63,35 +66,51 @@ const SingleComment = ({ comment, index }) => {
   const profileData = useSelector((state) => state.profile)
   return (
     <>
-      {bestComment ? (
-        <Col md={2} className="best-comment">
+      {bestComment && comment.likes > 0 ? (
+        <Col md={2} className="best-comment d-flex justify-content-center pt-2">
           <img
-            style={{ height: '40px' }}
+            style={{ height: '60px', borderRadius: '50%' }}
             src={profileData.avatar}
             alt="placeholder"
           ></img>
         </Col>
       ) : (
-        <Col md={2}>
+        <Col md={2} className="d-flex justify-content-center pt-2">
           <img
-            style={{ height: '40px' }}
+            style={{ height: '60px', borderRadius: '50%' }}
             src={profileData.avatar}
             alt="placeholder"
           ></img>
         </Col>
       )}
-      {bestComment ? (
-        <Col md={10} className="best-comment">
+      {bestComment && comment.likes > 0 ? (
+        <Col md={10} className="best-comment pt-2">
           <Row>
-            <span>{profileData.name}</span>
+            <span className="bold-text">{profileData.name}</span>
             <span className="mx-2">.</span>
-            <span>date</span>
+            <span>{format(new Date(comment.createdAt), 'MMM d')}</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="icon icon-tabler icon-tabler-school ml-3"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              strokeWidth="2"
+              stroke="currentColor"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M22 9l-10 -4l-10 4l10 4l10 -4v6"></path>
+              <path d="M6 10.6v5.4a6 3 0 0 0 12 0v-5.4"></path>
+            </svg>
           </Row>
-          <Row>
+          <Row className="mb-n3">
             <span>{comment.comment}</span>
           </Row>
           <Row>
-            <Row className="py-3">
+            <Row className="pt-3 pb-2">
               <Col className="d-flex flex-direction-column align-items-center">
                 <span className="post-hover">
                   <svg
@@ -131,43 +150,46 @@ const SingleComment = ({ comment, index }) => {
                 </span>
                 <span>{likesCount}</span>
               </Col>
-              <Col className="d-flex justify-content-end">
-                <span className="post-hover">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="icon icon-tabler icon-tabler-dots"
-                    width="26"
-                    height="26"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="#2c3e50"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <circle cx="5" cy="12" r="1" />
-                    <circle cx="12" cy="12" r="1" />
-                    <circle cx="19" cy="12" r="1" />
-                  </svg>
-                </span>
-              </Col>
+              {console.log('comment', comment)}
+              {profileData._id === comment.author && (
+                <Col className="d-flex justify-content-end">
+                  <span className="post-hover">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="icon icon-tabler icon-tabler-dots"
+                      width="26"
+                      height="26"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="#2c3e50"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <circle cx="5" cy="12" r="1" />
+                      <circle cx="12" cy="12" r="1" />
+                      <circle cx="19" cy="12" r="1" />
+                    </svg>
+                  </span>
+                </Col>
+              )}
             </Row>
           </Row>
           {/* <hr /> */}
         </Col>
       ) : (
-        <Col md={10}>
+        <Col md={10} className="pt-2">
           <Row>
-            <span>{profileData.name}</span>
+            <span className="bold-text">{profileData.name}</span>
             <span className="mx-2">.</span>
-            <span>date</span>
+            <span>{format(new Date(comment.createdAt), 'MMM d')}</span>
           </Row>
-          <Row>
+          <Row className="mb-n3">
             <span>{comment.comment}</span>
           </Row>
           <Row>
-            <Row className="py-3">
+            <Row className="pt-3 pb-2">
               <Col className="d-flex flex-direction-column align-items-center">
                 <span className="post-hover">
                   <svg
@@ -207,27 +229,7 @@ const SingleComment = ({ comment, index }) => {
                 </span>
                 <span>{likesCount}</span>
               </Col>
-              <Col className="d-flex justify-content-end">
-                <span className="post-hover">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="icon icon-tabler icon-tabler-dots"
-                    width="26"
-                    height="26"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="#2c3e50"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <circle cx="5" cy="12" r="1" />
-                    <circle cx="12" cy="12" r="1" />
-                    <circle cx="19" cy="12" r="1" />
-                  </svg>
-                </span>
-              </Col>
+              {profileData._id === comment.author && <ModalReadyToEditComment />}
             </Row>
           </Row>
         </Col>

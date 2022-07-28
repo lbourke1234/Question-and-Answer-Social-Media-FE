@@ -1,5 +1,6 @@
 import { Col, Row } from 'react-bootstrap'
 import { useState } from 'react'
+import { format } from 'date-fns'
 
 const RecentPosts = ({ post }) => {
   const [isHovering, setIsHovering] = useState(false)
@@ -24,6 +25,11 @@ const RecentPosts = ({ post }) => {
         <Row>
           <Col>
             <p className="bold-text">{post.content.heading}</p>
+            {!isHovering && (
+              <p className="text-align-right">
+                {format(new Date(post.createdAt), 'MMM d kk:mm')}
+              </p>
+            )}
           </Col>
         </Row>
         {isHovering && (

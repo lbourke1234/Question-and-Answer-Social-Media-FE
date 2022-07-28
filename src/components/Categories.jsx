@@ -59,7 +59,11 @@ const Categories = () => {
 
   return (
     <>
-      <Jumbotron fluid>
+      <Jumbotron
+        fluid
+        className="jumbotron-categories"
+        // style={{ backgroundImage: `url (../../images/Philosophy.jpg)` }}
+      >
         <Container className="jumbotron-text-container">
           <h1>{location.state.name}</h1>
           <p>{currentCategory.description}</p>

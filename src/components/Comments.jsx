@@ -88,7 +88,7 @@ const Comments = ({ post, fullPost }) => {
       )}
       {comments.length > 0 &&
         comments.map((comment, index) => (
-          <Row key={index}>
+          <Row key={index} className="comment-box">
             <SingleComment comment={comment} index={index} />
           </Row>
         ))}
