@@ -10,7 +10,6 @@ const CategoryDetails = ({ currentCategory }) => {
       </Row>
       <Row>
         <Col>
-          {console.log('cat', currentCategory)}
           <span>{currentCategory.description}</span>
         </Col>
       </Row>

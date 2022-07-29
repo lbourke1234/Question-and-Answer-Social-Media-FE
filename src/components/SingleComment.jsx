@@ -1,15 +1,27 @@
 import { useEffect, useState } from 'react'
-import { Col, Row } from 'react-bootstrap'
+import { Badge, Col, Row } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import { format } from 'date-fns'
 import ModalReadyToEditComment from './ModalReadyToEditComment'
+// import { setCurrentPostCommentsAction } from '../redux/actions'
 
-const SingleComment = ({ comment, index }) => {
+const SingleComment = ({ comment, index, newestComments }) => {
   const token = localStorage.getItem('token')
   const resizedToken = token.substring(1, token.length - 1)
   const [bestComment, setBestComment] = useState(false)
   const profileData = useSelector((state) => state.profile)
   const [likesCount, setLikesCount] = useState('')
+  // const dispatch = useDispatch()
+
+  // const fetchComments = async (id) => {
+  //   const response = await fetch(process.env.REACT_APP_GET_POST_COMMENTS + id)
+  //   if (response.ok) {
+  //     const body = await response.json()
+  //     console.log('fetch comment', body)
+  //     // setComments(body)
+  //     dispatch(setCurrentPostCommentsAction(body))
+  //   }
+  // }
 
   const fetchLikesCount = async () => {
     const response = await fetch(`${process.env.REACT_APP_GET_COMMENT}${comment._id}`, {
@@ -86,22 +98,9 @@ const SingleComment = ({ comment, index }) => {
             <span className="bold-text">{profileData.name}</span>
             <span className="mx-2">.</span>
             <span>{format(new Date(comment.createdAt), 'MMM d')}</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="icon icon-tabler icon-tabler-school ml-3"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              strokeWidth="2"
-              stroke="currentColor"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <path d="M22 9l-10 -4l-10 4l10 4l10 -4v6"></path>
-              <path d="M6 10.6v5.4a6 3 0 0 0 12 0v-5.4"></path>
-            </svg>
+            <Badge className="ml-3" variant="success">
+              Best Comment
+            </Badge>
           </Row>
           <Row className="mb-n3">
             <span>{comment.comment}</span>
@@ -181,6 +180,11 @@ const SingleComment = ({ comment, index }) => {
             <span className="bold-text">{profileData.name}</span>
             <span className="mx-2">.</span>
             <span>{format(new Date(comment.createdAt), 'MMM d')}</span>
+            {newestComments && newestComments.length > 0 && (
+              <Badge className="ml-3" variant="danger">
+                New
+              </Badge>
+            )}
           </Row>
           <Row className="mb-n3">
             <span>{comment.comment}</span>

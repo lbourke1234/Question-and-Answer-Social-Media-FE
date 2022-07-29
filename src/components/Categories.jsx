@@ -8,8 +8,15 @@ import {
   setCurrentCategoryQuestionsAction
 } from '../redux/actions'
 import CategoryDetails from './CategoryDetails'
+import ChatMain from './ChatMain'
+import { io } from 'socket.io-client'
+
+const ADDRESS = process.env.REACT_APP_SOCKET_URL
+const socket = io(ADDRESS, { transports: ['websocket'] })
 
 const Categories = () => {
+  console.log('socket', socket)
+
   const currentCategory = useSelector((state) => state.currentCategory)
   const catQuestions = useSelector((state) => state.currentCategoryQuestions)
 
@@ -30,7 +37,6 @@ const Categories = () => {
     )
     if (response.ok) {
       const body = await response.json()
-      console.log('category questions', body)
       dispatch(setCurrentCategoryQuestionsAction(body))
     }
   }
@@ -46,7 +52,6 @@ const Categories = () => {
     )
     if (response.ok) {
       const body = await response.json()
-      console.log('category current body', body)
       dispatch(setCurrentCategoryAction(body))
     }
   }
@@ -54,11 +59,20 @@ const Categories = () => {
   useEffect(() => {
     fetchCategory()
     fetchCategoryQuestions()
+    console.log('before socket.on')
+
+    // ALL SOCKET STUFF BELOW FOR NOW
+    socket.on('connect', () => {
+      console.log('Connection established!')
+      console.log('Socket ID', ` ${socket.id}!`)
+    })
+
+    // ALL SOCKET STUFF ABOVE FOR NOW
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const imageUrl = currentCategory.image
-  console.log(imageUrl)
 
   return (
     <>
@@ -84,6 +98,7 @@ const Categories = () => {
           </Col>
         </Row>
       </Container>
+      <ChatMain />
     </>
   )
 }

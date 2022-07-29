@@ -13,8 +13,7 @@ const Comments = ({ post, fullPost }) => {
   const token = localStorage.getItem('token')
   const resizedToken = token.substring(1, token.length - 1)
 
-  // const [comments, setComments] = useState('')
-
+  const newestComments = useSelector((state) => state.newestComments)
   const [newCommentText, setNewCommentText] = useState('')
 
   const fullComment = {
@@ -86,6 +85,16 @@ const Comments = ({ post, fullPost }) => {
           </Col>
         </Row>
       )}
+      {newestComments.length > 0 &&
+        newestComments.map((comment, index) => (
+          <Row key={index} className="comment-box">
+            <SingleComment
+              comment={comment}
+              index={index}
+              newestComments={newestComments}
+            />
+          </Row>
+        ))}
       {comments.length > 0 &&
         comments.map((comment, index) => (
           <Row key={index} className="comment-box">
