@@ -34,10 +34,10 @@ const Profile = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
-    <Container className="mt-3 white-background slight-border-radius">
+    <Container className="mt-3 white-background slight-border-radius profile-main-container">
       <Row className="border-bottom-profile">
         <Col className="d-flex justify-content-center py-3">
-          <h1>Come back and check your kudos here!</h1>
+          <h1 className="check-your-kudos">Come back and check your kudos here!</h1>
         </Col>
         <hr></hr>
       </Row>
@@ -59,30 +59,22 @@ const Profile = () => {
               <span className="bold-text large-text">{profileData.name}</span>
             </Col>
           </Row>
-          <Row>
-            <Col>
-              <span className="faded-text">Add profile credentials</span>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <span className="faded-text">no. followers / no. following</span>
-            </Col>
-          </Row>
         </Col>
         <Col md={4}>
-          <span className="kudos-profile">{profileData.kudos}</span>
+          <span className="kudos-profile d-flex justify-content-center align-items-center">
+            {profileData.kudos}
+          </span>
         </Col>
       </Row>
       <Row>
-        <Col>
+        <Col className="d-flex justify-content-center flex-column align-items-center">
           {profileData.kudos >= 10 ? (
             <>
-              <h1>You are doing an amazing job answering questions </h1>
+              <h1 className="check-your-kudos">You are doing an amazing job</h1>
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="icon icon-tabler icon-tabler-trophy"
+                  className="icon icon-tabler icon-tabler-trophy great-helper"
                   width="44"
                   height="44"
                   viewBox="0 0 24 24"
@@ -104,7 +96,9 @@ const Profile = () => {
             </>
           ) : (
             <>
-              <h1>You could answer some more questions </h1>
+              <h1 className="check-your-kudos doing-bad">
+                Gain more kudos to fill in your trophy!
+              </h1>
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -129,7 +123,7 @@ const Profile = () => {
               </span>
             </>
           )}
-          <h2>Check back often to see how you rank</h2>
+          <h2 className="check-back-again">Check back often to see how you rank</h2>
         </Col>
       </Row>
     </Container>

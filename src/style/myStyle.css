@@ -182,3 +182,39 @@ body {
   border-bottom: solid;
   border-width: 0.1px;
 }
+.recent-posts-container {
+  overflow: auto;
+  height: 93vh;
+}
+.recent-posts-container::-webkit-scrollbar {
+  width: 10px;
+}
+.recent-posts-container::-webkit-scrollbar-thumb {
+  background-color: #000;
+  border-radius: 20px;
+}
+.profile-main-container {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 15%;
+}
+.check-your-kudos {
+  font-size: 80px;
+  font-weight: 100;
+}
+.check-back-again {
+  font-size: 40px;
+  font-weight: 100;
+}
+.doing-good {
+  color: green;
+}
+.doing-bad {
+  color: red;
+}
+.great-helper {
+  fill: green;
+}

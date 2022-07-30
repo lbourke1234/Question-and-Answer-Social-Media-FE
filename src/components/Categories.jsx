@@ -12,7 +12,10 @@ import ChatMain from './ChatMain'
 import { io } from 'socket.io-client'
 
 const ADDRESS = process.env.REACT_APP_SOCKET_URL
-const socket = io(ADDRESS, { transports: ['websocket'] })
+// const socket = io(ADDRESS, { transports: ['websocket'] })
+const socket = io('http://localhost:5001', {
+  transports: ['websocket']
+})
 
 const Categories = () => {
   console.log('socket', socket)
@@ -38,7 +41,6 @@ const Categories = () => {
     if (response.ok) {
       const body = await response.json()
       dispatch(setCurrentCategoryQuestionsAction(body))
-      console.log('latest', body)
     }
   }
 
@@ -53,7 +55,6 @@ const Categories = () => {
     )
     if (response.ok) {
       const body = await response.json()
-      console.log('body of category fetch', body)
       dispatch(setCurrentCategoryAction(body))
     }
   }
@@ -61,11 +62,12 @@ const Categories = () => {
   useEffect(() => {
     fetchCategory()
     fetchCategoryQuestions()
-    console.log('before socket.on')
 
     // ALL SOCKET STUFF BELOW FOR NOW
     socket.on('connect', () => {
-      socket.emit('connection', { message: 'Connection made' })
+      socket.emit('connection', () => {
+        console.log('finally established connection')
+      })
       console.log('Connection established!')
       console.log('Socket ID', ` ${socket.id}!`)
     })
@@ -96,7 +98,6 @@ const Categories = () => {
               <PostMainContainer key={q._id} post={q} />
             ))}
           </Col>
-          {console.log('before componntntntnt now', currentCategory)}
           <Col md={3}>
             <CategoryDetails currentCategory={currentCategory} />
           </Col>

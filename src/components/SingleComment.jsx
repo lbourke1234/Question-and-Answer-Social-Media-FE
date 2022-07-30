@@ -79,7 +79,7 @@ const SingleComment = ({ comment, index, newestComments }) => {
         <Col md={2} className="best-comment d-flex justify-content-center pt-2 bc-left">
           <img
             style={{ height: '60px', width: '60px', borderRadius: '50%' }}
-            src={profileData.avatar}
+            src={comment.author.avatar}
             alt="placeholder"
           ></img>
         </Col>
@@ -87,7 +87,7 @@ const SingleComment = ({ comment, index, newestComments }) => {
         <Col md={2} className="d-flex justify-content-center pt-2">
           <img
             style={{ height: '60px', width: '60px', borderRadius: '50%' }}
-            src={profileData.avatar}
+            src={comment.author.avatar}
             alt="placeholder"
           ></img>
         </Col>
@@ -176,6 +176,7 @@ const SingleComment = ({ comment, index, newestComments }) => {
         </Col>
       ) : (
         <Col md={10} className="pt-2">
+          {console.log('comment finally', comment)}
           <Row>
             <span className="bold-text">{profileData.name}</span>
             <span className="mx-2">.</span>

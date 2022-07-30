@@ -74,7 +74,7 @@ const NewsFeed = () => {
           {allPosts &&
             allPosts.map((post) => <PostMainContainer key={post._id} post={post} />)}
         </Col>
-        <Col md={3}>
+        <Col md={3} className="recent-posts-container">
           <RecentPostsContainer posts={allPosts} />
         </Col>
       </Row>

@@ -41,10 +41,7 @@ const PostMainContainer = ({ post }) => {
     )
     if (response.ok) {
       const body = await response.json()
-      console.log('like fetch', body)
       if (body.post) {
-        console.log('likes count like', body.post.likes)
-
         setLikesCount(body.post.likes)
       }
     }
@@ -61,8 +58,6 @@ const PostMainContainer = ({ post }) => {
     )
     if (response.ok) {
       const body = await response.json()
-      console.log('remove like fetch body', body)
-      console.log('likes count dislike', body.likes)
       if (body.likes >= 0) {
         setLikesCount(body.likes)
       }

@@ -22,7 +22,7 @@ const RecentPostsContainer = ({ posts }) => {
   }, [])
 
   return (
-    <Container className="recent-posts-sticky white-background px-5 py-2 slight-border-radius">
+    <Container className="recent-posts-sticky white-background px-5 py-2 slight-border-radius mt-3">
       <Row>
         <h2>Recent Posts</h2>
       </Row>

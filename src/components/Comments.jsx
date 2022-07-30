@@ -90,7 +90,7 @@ const Comments = ({ post, fullPost }) => {
           <Row key={index} className="comment-box">
             <SingleComment
               comment={comment}
-              index={index}
+              // index={index}
               newestComments={newestComments}
             />
           </Row>
