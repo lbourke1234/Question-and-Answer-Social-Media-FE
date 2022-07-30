@@ -80,7 +80,7 @@ const PostMainContainer = ({ post }) => {
       <Row>
         <Col md={1}>
           <img
-            style={{ height: '40px' }}
+            style={{ height: '40px', width: '40px', borderRadius: '50%' }}
             src={post.author.avatar}
             alt="placeholder"
           ></img>
@@ -151,10 +151,10 @@ const PostMainContainer = ({ post }) => {
       </Row>
       <Row className="py-3">
         <Col className="d-flex flex-direction-column align-items-center">
-          <span className="post-hover">
+          <span className="">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="icon icon-tabler icon-tabler-thumb-up mr-3 "
+              className="icon icon-tabler icon-tabler-thumb-up mr-3 icon-hover "
               width="26"
               height="26"
               viewBox="0 0 24 24"
@@ -169,10 +169,10 @@ const PostMainContainer = ({ post }) => {
               <path d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" />
             </svg>
           </span>
-          <span className="post-hover">
+          <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="icon icon-tabler icon-tabler-thumb-down mr-3"
+              className="icon icon-tabler icon-tabler-thumb-down mr-3 icon-hover"
               width="26"
               height="26"
               viewBox="0 0 24 24"
@@ -187,33 +187,11 @@ const PostMainContainer = ({ post }) => {
               <path d="M7 13v-8a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v7a1 1 0 0 0 1 1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 4 0v-5h3a2 2 0 0 0 2 -2l-1 -5a2 3 0 0 0 -2 -2h-7a3 3 0 0 0 -3 3" />
             </svg>
           </span>
-          <span>{likesCount}</span>
-
-          <span className="post-hover">
+          <span className="likes-count-text">{likesCount}</span>
+          <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="icon icon-tabler icon-tabler-share mr-3"
-              width="26"
-              height="26"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="#2c3e50"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <circle cx="6" cy="12" r="3" />
-              <circle cx="18" cy="6" r="3" />
-              <circle cx="18" cy="18" r="3" />
-              <line x1="8.7" y1="10.7" x2="15.3" y2="7.3" />
-              <line x1="8.7" y1="13.3" x2="15.3" y2="16.7" />
-            </svg>
-          </span>
-          <span className="post-hover">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="icon icon-tabler icon-tabler-message-dots"
+              className="icon icon-tabler icon-tabler-message-dots ml-3 icon-hover"
               width="26"
               height="26"
               viewBox="0 0 24 24"

@@ -4,6 +4,16 @@ html {
 body {
   background-color: #f1f2f2;
 }
+
+@media (min-width: 1600px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl {
+    max-width: 1540px;
+  }
+}
 .bold-text {
   font-weight: 700;
 }
@@ -98,17 +108,20 @@ body {
 .chat-popup-container {
   width: 20vw;
   position: fixed;
-  right: 100px;
-  top: 200px;
-  height: 70vh;
+  right: 60px;
+  bottom: 130px;
+  min-height: 500px;
+  max-height: 75vh;
+  overflow: auto;
   background-color: rgb(212, 219, 250);
   z-index: 1;
 }
 .category-chat-box-col {
-  position: absolute;
-  bottom: 0;
+  /* position: absolute;
+  bottom: 0;*/
   margin-bottom: 12px;
 }
+
 .chat-popup-top {
   background-color: rgb(119, 143, 252);
   padding-top: 12px;
@@ -116,9 +129,56 @@ body {
   padding-top: 12px;
   padding-top: 12px;
 }
-/* .main-popup-chat-col {} */
+.main-popup-chat-col::-webkit-scrollbar {
+  width: 10px;
+}
+.main-popup-chat-col::-webkit-scrollbar-thumb {
+  background-color: #000;
+  border-radius: 20px;
+}
 .single-message-row {
   background: white;
   border-radius: 15px;
   margin: 10px;
+}
+.wider-container {
+  max-width: 1700px;
+}
+.left-category-name-text {
+  font-size: 20px;
+  font-weight: 500;
+}
+.likes-count-text {
+  color: green;
+}
+.icon-hover:hover {
+  cursor: pointer;
+  fill: rgb(59, 59, 251);
+}
+.cancel-bottom-border-radius {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.cancel-top-border-radius {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+.kudos-profile {
+  font-size: 80px;
+}
+.recent-post-design {
+  background-color: rgb(8, 8, 8);
+  color: white;
+}
+.left-categories-hover:hover {
+  border-left: solid;
+  cursor: pointer;
+}
+.border-bottom-profile {
+  border-bottom: solid;
+  border-width: 0.1px;
+}
+.border-bottom-middle-profile {
+  border-bottom: solid;
+  border-width: 0.1px;
 }

@@ -38,6 +38,7 @@ const Categories = () => {
     if (response.ok) {
       const body = await response.json()
       dispatch(setCurrentCategoryQuestionsAction(body))
+      console.log('latest', body)
     }
   }
 
@@ -52,6 +53,7 @@ const Categories = () => {
     )
     if (response.ok) {
       const body = await response.json()
+      console.log('body of category fetch', body)
       dispatch(setCurrentCategoryAction(body))
     }
   }
@@ -63,6 +65,7 @@ const Categories = () => {
 
     // ALL SOCKET STUFF BELOW FOR NOW
     socket.on('connect', () => {
+      socket.emit('connection', { message: 'Connection made' })
       console.log('Connection established!')
       console.log('Socket ID', ` ${socket.id}!`)
     })
@@ -83,16 +86,17 @@ const Categories = () => {
       >
         <Container className="jumbotron-text-container">
           <h1>{location.state.name}</h1>
-          {/* <p>{currentCategory.description}</p> */}
+          <p>{currentCategory.description}</p>
         </Container>
       </Jumbotron>
-      <Container>
+      <Container className="wider-container">
         <Row>
           <Col md={9}>
             {catQuestions.map((q) => (
               <PostMainContainer key={q._id} post={q} />
             ))}
           </Col>
+          {console.log('before componntntntnt now', currentCategory)}
           <Col md={3}>
             <CategoryDetails currentCategory={currentCategory} />
           </Col>

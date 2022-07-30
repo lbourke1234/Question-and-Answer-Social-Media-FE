@@ -6,6 +6,12 @@ const initialState = {
   image: '',
   name: '',
   questions: [],
+  text: {
+    paragraph1: '',
+    paragraph2: '',
+    paragraph3: '',
+    picture: ''
+  },
   _id: ''
 }
 

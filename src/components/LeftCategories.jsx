@@ -5,18 +5,19 @@ const LeftCategories = ({ category }) => {
   const navigate = useNavigate()
   return (
     <Row
-      className="my-2 post-hover categories-sticky"
+      className="my-3 categories-sticky left-categories-hover"
       onClick={() => navigate('/categories', { state: { name: category.name } })}
     >
       <Col md={1}>
         <img
-          style={{ height: '20px', width: '20px' }}
+          className="mt-2"
+          style={{ height: '40px', width: '40px', display: 'flex', alignItems: 'center' }}
           src={category.image}
           alt="placeholder"
         ></img>
       </Col>
-      <Col md={9}>
-        <span className="faded-text smaller-text">{category.name}</span>
+      <Col md={9} className="d-flex align-items-center">
+        <span className="faded-text left-category-name-text ml-5">{category.name}</span>
       </Col>
     </Row>
   )

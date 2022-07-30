@@ -78,7 +78,7 @@ const SingleComment = ({ comment, index, newestComments }) => {
       {bestComment && comment.likes > 0 ? (
         <Col md={2} className="best-comment d-flex justify-content-center pt-2 bc-left">
           <img
-            style={{ height: '60px', borderRadius: '50%' }}
+            style={{ height: '60px', width: '60px', borderRadius: '50%' }}
             src={profileData.avatar}
             alt="placeholder"
           ></img>
@@ -86,7 +86,7 @@ const SingleComment = ({ comment, index, newestComments }) => {
       ) : (
         <Col md={2} className="d-flex justify-content-center pt-2">
           <img
-            style={{ height: '60px', borderRadius: '50%' }}
+            style={{ height: '60px', width: '60px', borderRadius: '50%' }}
             src={profileData.avatar}
             alt="placeholder"
           ></img>
@@ -108,10 +108,10 @@ const SingleComment = ({ comment, index, newestComments }) => {
           <Row>
             <Row className="pt-3 pb-2">
               <Col className="d-flex flex-direction-column align-items-center">
-                <span className="post-hover">
+                <span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="icon icon-tabler icon-tabler-thumb-up mr-3 "
+                    className="icon icon-tabler icon-tabler-thumb-up mr-3 icon-hover "
                     width="26"
                     height="26"
                     viewBox="0 0 24 24"
@@ -126,10 +126,10 @@ const SingleComment = ({ comment, index, newestComments }) => {
                     <path d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" />
                   </svg>
                 </span>
-                <span className="post-hover">
+                <span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="icon icon-tabler icon-tabler-thumb-down mr-3"
+                    className="icon icon-tabler icon-tabler-thumb-down mr-3 icon-hover"
                     width="26"
                     height="26"
                     viewBox="0 0 24 24"
@@ -149,7 +149,7 @@ const SingleComment = ({ comment, index, newestComments }) => {
               {console.log('comment', comment)}
               {profileData._id === comment.author && (
                 <Col className="d-flex justify-content-end">
-                  <span className="post-hover">
+                  <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="icon icon-tabler icon-tabler-dots"
@@ -192,10 +192,10 @@ const SingleComment = ({ comment, index, newestComments }) => {
           <Row>
             <Row className="pt-3 pb-2">
               <Col className="d-flex flex-direction-column align-items-center">
-                <span className="post-hover">
+                <span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="icon icon-tabler icon-tabler-thumb-up mr-3 "
+                    className="icon icon-tabler icon-tabler-thumb-up mr-3 icon-hover"
                     width="26"
                     height="26"
                     viewBox="0 0 24 24"
@@ -210,10 +210,10 @@ const SingleComment = ({ comment, index, newestComments }) => {
                     <path d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" />
                   </svg>
                 </span>
-                <span className="post-hover">
+                <span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="icon icon-tabler icon-tabler-thumb-down mr-3"
+                    className="icon icon-tabler icon-tabler-thumb-down mr-3 icon-hover"
                     width="26"
                     height="26"
                     viewBox="0 0 24 24"

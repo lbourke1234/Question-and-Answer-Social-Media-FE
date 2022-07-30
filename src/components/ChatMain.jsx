@@ -12,16 +12,13 @@ const ChatMain = () => {
   return (
     <>
       {openChat && (
-        <Container className="chat-popup-container">
-          <Row>
-            <CategoryChatTop />
-            <Col md={12}>
-              <PopupChatMain />
-            </Col>
+        <div className="chat-popup-container d-flex flex-column">
+          <CategoryChatTop />
 
-            <CategoryChatBox />
-          </Row>
-        </Container>
+          <PopupChatMain />
+
+          <CategoryChatBox />
+        </div>
       )}
 
       <Container fluid className="chat-main-container">

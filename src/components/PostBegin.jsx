@@ -12,7 +12,7 @@ const PostBegin = () => {
       <Row>
         <Col md={2}>
           <img
-            style={{ height: '40px' }}
+            style={{ height: '40px', width: '40px' }}
             src={profileData.avatar}
             alt="placeholder"
             className="profile-image"

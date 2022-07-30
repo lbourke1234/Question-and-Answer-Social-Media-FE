@@ -22,13 +22,13 @@ const RecentPostsContainer = ({ posts }) => {
   }, [])
 
   return (
-    <Container className="recent-posts-sticky">
+    <Container className="recent-posts-sticky white-background px-5 py-2 slight-border-radius">
       <Row>
         <h2>Recent Posts</h2>
       </Row>
       <Row>
         {recentPosts.map((post) => (
-          <a className="recent-sidebar-a" href={`#${post._id}`} key={post._id}>
+          <a className="recent-sidebar-a " href={`#${post._id}`} key={post._id}>
             <RecentPosts key={post._id} post={post} />
           </a>
         ))}

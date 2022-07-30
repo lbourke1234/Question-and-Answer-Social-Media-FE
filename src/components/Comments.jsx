@@ -59,7 +59,7 @@ const Comments = ({ post, fullPost }) => {
         <Row className="py-2 add-comment-bg">
           <Col md={1}>
             <img
-              style={{ height: '40px' }}
+              style={{ height: '40px', width: '40px', borderRadius: '50%' }}
               src={profileData.avatar}
               alt="placeholder"
             ></img>

@@ -1,11 +1,5 @@
-import { Col } from 'react-bootstrap'
-
 const CategoryChatTop = () => {
-  return (
-    <Col md={12} className="chat-popup-top">
-      Group name goes here
-    </Col>
-  )
+  return <div className="chat-popup-top px-3">Group name goes here</div>
 }
 
 export default CategoryChatTop

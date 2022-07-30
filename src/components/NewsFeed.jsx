@@ -60,7 +60,7 @@ const NewsFeed = () => {
   }, [])
 
   return (
-    <Container>
+    <Container className="wider-container">
       <Row>
         <Col md={2}>
           <Container fluid className="categories-sticky">

@@ -14,12 +14,16 @@ const RecentPosts = ({ post }) => {
   }
   return (
     <Row
-      className="my-2 pt-2 white-background slight-border-radius"
+      className="my-2 pt-2 slight-border-radius recent-post-design"
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
     >
       <Col md={2}>
-        <img style={{ height: '40px' }} src={post.author.avatar} alt="placeholder"></img>
+        <img
+          style={{ height: '40px', width: '40px', borderRadius: '50%' }}
+          src={post.author.avatar}
+          alt="placeholder"
+        ></img>
       </Col>
       <Col md={10}>
         <Row>

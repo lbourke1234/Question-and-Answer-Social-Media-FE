@@ -6,7 +6,7 @@ const MyNav = () => {
 
   return (
     <Navbar expand="lg" className="navBar-sticky white-background">
-      <Container>
+      <Container className="wider-container">
         <Navbar.Brand href="/">Questions</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -76,7 +76,7 @@ const MyNav = () => {
             </Nav.Link>
             <Nav.Link href="profile">
               <img
-                style={{ height: '40px' }}
+                style={{ height: '35px', width: '35px', borderRadius: '50%' }}
                 src={profileData.avatar}
                 alt="placeholder"
               ></img>
