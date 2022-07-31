@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Badge } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { setLikesCountAction } from '../redux/actions'
 import Comments from './Comments'
 import { format } from 'date-fns'
 
-const PostMainContainer = ({ post }) => {
+const PostMainContainer = ({ post, newPosts }) => {
   const dispatch = useDispatch()
   const [likesCount, setLikesCount] = useState('')
 
@@ -89,6 +89,11 @@ const PostMainContainer = ({ post }) => {
               <a href="/" id={post._id}>
                 <span className="blue-text">Follow</span>
               </a>
+              {newPosts && (
+                <Badge className="ml-3" variant="danger">
+                  New
+                </Badge>
+              )}
             </Col>
             <Col className="d-flex justify-content-end">
               <span>

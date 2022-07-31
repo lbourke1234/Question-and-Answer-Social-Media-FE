@@ -95,7 +95,7 @@ const SingleComment = ({ comment, index, newestComments }) => {
       {bestComment && comment.likes > 0 ? (
         <Col md={10} className="best-comment pt-2">
           <Row>
-            <span className="bold-text">{profileData.name}</span>
+            <span className="bold-text">{comment.author.name}</span>
             <span className="mx-2">.</span>
             <span>{format(new Date(comment.createdAt), 'MMM d')}</span>
             <Badge className="ml-3" variant="success">
@@ -178,7 +178,7 @@ const SingleComment = ({ comment, index, newestComments }) => {
         <Col md={10} className="pt-2">
           {console.log('comment finally', comment)}
           <Row>
-            <span className="bold-text">{profileData.name}</span>
+            <span className="bold-text">{comment.author.name}</span>
             <span className="mx-2">.</span>
             <span>{format(new Date(comment.createdAt), 'MMM d')}</span>
             {newestComments && newestComments.length > 0 && (

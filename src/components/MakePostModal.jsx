@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import { Form } from 'react-bootstrap'
 import { useDispatch } from 'react-redux/es/hooks/useDispatch'
-import { setPostDataAction } from '../redux/actions'
+import { addNewestPostAction, setPostDataAction } from '../redux/actions'
 
 const MakePostModal = ({ token }) => {
   const dispatch = useDispatch()
@@ -76,6 +76,7 @@ const MakePostModal = ({ token }) => {
       // dispatch(setPostDataAction(body))
       fetchPostData()
       console.log('body of post', body)
+      dispatch(addNewestPostAction(body))
     } else {
       console.log('problem posting question')
     }

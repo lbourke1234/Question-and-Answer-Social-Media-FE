@@ -11,14 +11,14 @@ import CategoryDetails from './CategoryDetails'
 import ChatMain from './ChatMain'
 import { io } from 'socket.io-client'
 
-const ADDRESS = process.env.REACT_APP_SOCKET_URL
+// const ADDRESS = process.env.REACT_APP_SOCKET_URL
 // const socket = io(ADDRESS, { transports: ['websocket'] })
 const socket = io('http://localhost:5001', {
   transports: ['websocket']
 })
 
 const Categories = () => {
-  console.log('socket', socket)
+  // console.log('socket', socket)
 
   const currentCategory = useSelector((state) => state.currentCategory)
   const catQuestions = useSelector((state) => state.currentCategoryQuestions)
@@ -65,10 +65,10 @@ const Categories = () => {
 
     // ALL SOCKET STUFF BELOW FOR NOW
     socket.on('connect', () => {
+      console.log('Connection established!')
       socket.emit('connection', () => {
         console.log('finally established connection')
       })
-      console.log('Connection established!')
       console.log('Socket ID', ` ${socket.id}!`)
     })
 
@@ -76,6 +76,8 @@ const Categories = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {}, [])
 
   const imageUrl = currentCategory.image
 
