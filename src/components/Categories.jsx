@@ -70,7 +70,9 @@ const Categories = () => {
 
   const fetchChatHistory = async () => {
     const response = await fetch(
-      process.env.REACT_APP_CHAT_HISTORY + location.state.name,
+      process.env.REACT_APP_CHAT_HISTORY +
+        location.state.name.charAt(0).toUpperCase() +
+        location.state.name.slice(1),
       {
         headers: {
           Authorization: `Bearer ${resizedToken}`
@@ -79,6 +81,7 @@ const Categories = () => {
     )
     if (response.ok) {
       const body = await response.json()
+      console.log('chat history body fetch', body)
       setChatHistory(body)
     }
   }
@@ -94,11 +97,16 @@ const Categories = () => {
     }
   }
 
+  // useEffect(() => {
+
+  // }, [chatHistory])
+
   useEffect(() => {
     fetchCategory()
     fetchCategoryQuestions()
     fetchProfileData()
-    setRoom(location.state.name)
+    setRoom(location.state.name.charAt(0).toUpperCase() + location.state.name.slice(1))
+    fetchChatHistory()
 
     // ALL SOCKET STUFF BELOW FOR NOW
     socket.on('connect', () => {
@@ -109,23 +117,22 @@ const Categories = () => {
       })
       console.log('Socket ID', ` ${socket.id}!`)
     })
-    socket.on('loggedin', (onlineUsers) => {
-      console.log('logged in successfully!')
-      // setLoggedIn(true);
-      setOnlineUsers(onlineUsers)
+    socket.on('loggedin', fetchChatHistory)
 
-      fetchChatHistory()
+    socket.on('message', ({ text, profileName, savedMessage }) => {
+      console.log('saved Message on message', savedMessage)
+      console.log('text', text)
+      console.log('userName', profileName)
+      const newMessage = {
+        text,
+        senderName: profileName,
+        createdAt: new Date().toLocaleString('en-US')
+      }
 
-      socket.on('newConnection', (onlineUsers) => {
-        console.log('a new client just connected!')
-        console.log('Online Users:', onlineUsers)
-        setOnlineUsers(onlineUsers)
-      })
-    })
-    socket.on('message', (text, userName) => {
       console.log('in the on message')
-      console.log('chat history now', chatHistory)
-      setChatHistory([{ message: { text, sender: userName } }, ...chatHistory])
+      console.log('message to send', text, profileName)
+      setChatHistory((evaluatedChatHistory) => [...evaluatedChatHistory, newMessage])
+      console.log('chat history after update', chatHistory)
     })
 
     // ALL SOCKET STUFF ABOVE FOR NOW
@@ -142,22 +149,25 @@ const Categories = () => {
   }
   const sendMessage = (e) => {
     e.preventDefault()
-    // this function executes just for the sender for the message!
     const newMessage = {
       text,
-      sender: profileData.name,
+      senderName: profileData.name,
       createdAt: new Date().toLocaleString('en-US')
     }
 
+    // console.log('in sendMessage emit')
+    // console.log('chat history before appending new message', chatHistory)
+    setChatHistory([...chatHistory, newMessage])
+    const catName = currentCategory.name
+    const profileId = profileData._id
+    const profileName = profileData.name
+    console.log(text, catName, profileId, profileName)
     socket.emit('sendMessage', {
       text,
-      room: currentCategory.name,
-      senderId: profileData._id,
-      senderName: profileData.name
+      catName,
+      profileId,
+      profileName
     })
-    console.log('in sendMessage emit')
-    setChatHistory([...chatHistory, newMessage])
-    // this is appending my new message to the chat history in this very moment
     setText('')
   }
 
