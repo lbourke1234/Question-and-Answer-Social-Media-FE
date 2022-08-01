@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import {
   setCurrentCategoryAction,
-  setCurrentCategoryQuestionsAction
+  setCurrentCategoryQuestionsAction,
+  setProfileDataAction
 } from '../redux/actions'
 import CategoryDetails from './CategoryDetails'
 import ChatMain from './ChatMain'
@@ -20,7 +21,7 @@ const socket = io('http://localhost:5001', {
 const Categories = () => {
   // console.log('socket', socket)
   const [onlineUsers, setOnlineUsers] = useState([])
-  const [message, setMessage] = useState('')
+  const [text, setText] = useState('')
 
   const profileData = useSelector((state) => state.profile)
 
@@ -35,7 +36,7 @@ const Categories = () => {
   const location = useLocation()
   const dispatch = useDispatch()
 
-  const room = location.state.name
+  const [room, setRoom] = useState('')
 
   const fetchCategoryQuestions = async () => {
     const response = await fetch(
@@ -81,10 +82,23 @@ const Categories = () => {
       setChatHistory(body)
     }
   }
+  const fetchProfileData = async () => {
+    const response = await fetch(process.env.REACT_APP_USER_ME_URL, {
+      headers: {
+        Authorization: `Bearer ${resizedToken}`
+      }
+    })
+    if (response.ok) {
+      const body = await response.json()
+      dispatch(setProfileDataAction(body))
+    }
+  }
 
   useEffect(() => {
     fetchCategory()
     fetchCategoryQuestions()
+    fetchProfileData()
+    setRoom(location.state.name)
 
     // ALL SOCKET STUFF BELOW FOR NOW
     socket.on('connect', () => {
@@ -108,6 +122,11 @@ const Categories = () => {
         setOnlineUsers(onlineUsers)
       })
     })
+    socket.on('message', (text, userName) => {
+      console.log('in the on message')
+      console.log('chat history now', chatHistory)
+      setChatHistory([{ message: { text, sender: userName } }, ...chatHistory])
+    })
 
     // ALL SOCKET STUFF ABOVE FOR NOW
 
@@ -121,18 +140,25 @@ const Categories = () => {
       room
     })
   }
-  const sendMessage = () => {
+  const sendMessage = (e) => {
+    e.preventDefault()
     // this function executes just for the sender for the message!
     const newMessage = {
-      text: message,
-      // sender: username,
+      text,
+      sender: profileData.name,
       createdAt: new Date().toLocaleString('en-US')
     }
 
-    socket.emit('sendMessage', { message, room })
+    socket.emit('sendMessage', {
+      text,
+      room: currentCategory.name,
+      senderId: profileData._id,
+      senderName: profileData.name
+    })
+    console.log('in sendMessage emit')
     setChatHistory([...chatHistory, newMessage])
     // this is appending my new message to the chat history in this very moment
-    setMessage('')
+    setText('')
   }
 
   useEffect(() => {}, [])
@@ -147,7 +173,7 @@ const Categories = () => {
         style={{ backgroundImage: 'url(' + imageUrl + ')' }}
       >
         <Container className="jumbotron-text-container">
-          <h1>{location.state.name}</h1>
+          <h1>{room}</h1>
           <p>{currentCategory.description}</p>
         </Container>
       </Jumbotron>
@@ -165,9 +191,10 @@ const Categories = () => {
       </Container>
       <ChatMain
         handleUsernameSubmit={handleUsernameSubmit}
-        setMessage={setMessage}
+        setMessage={setText}
         chatHistory={chatHistory}
         room={room}
+        sendMessage={sendMessage}
       />
     </>
   )

@@ -5,7 +5,13 @@ import CategoryChatBox from './CategoryChatBox'
 import CategoryChatTop from './CategoryChatTop'
 import PopupChatMain from './PopupChatMain'
 
-const ChatMain = ({ handleUsernameSubmit, setMessage, chatHistory, room }) => {
+const ChatMain = ({
+  handleUsernameSubmit,
+  setMessage,
+  chatHistory,
+  room,
+  sendMessage
+}) => {
   const [openChat, setOpenChat] = useState(false)
 
   const toggleChat = () => setOpenChat(!openChat)
@@ -20,7 +26,7 @@ const ChatMain = ({ handleUsernameSubmit, setMessage, chatHistory, room }) => {
 
           <PopupChatMain chatHistory={chatHistory} />
 
-          <CategoryChatBox setMessage={setMessage} />
+          <CategoryChatBox setMessage={setMessage} sendMessage={sendMessage} />
         </div>
       )}
 
