@@ -2,7 +2,7 @@ import { Container, Row, Col, Jumbotron } from 'react-bootstrap'
 import PostMainContainer from './PostMainContainer'
 import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import {
   setCurrentCategoryAction,
   setCurrentCategoryQuestionsAction
@@ -19,6 +19,12 @@ const socket = io('http://localhost:5001', {
 
 const Categories = () => {
   // console.log('socket', socket)
+  const [onlineUsers, setOnlineUsers] = useState([])
+  const [message, setMessage] = useState('')
+
+  const profileData = useSelector((state) => state.profile)
+
+  const [chatHistory, setChatHistory] = useState([])
 
   const currentCategory = useSelector((state) => state.currentCategory)
   const catQuestions = useSelector((state) => state.currentCategoryQuestions)
@@ -28,6 +34,8 @@ const Categories = () => {
 
   const location = useLocation()
   const dispatch = useDispatch()
+
+  const room = location.state.name
 
   const fetchCategoryQuestions = async () => {
     const response = await fetch(
@@ -59,6 +67,21 @@ const Categories = () => {
     }
   }
 
+  const fetchChatHistory = async () => {
+    const response = await fetch(
+      process.env.REACT_APP_CHAT_HISTORY + location.state.name,
+      {
+        headers: {
+          Authorization: `Bearer ${resizedToken}`
+        }
+      }
+    )
+    if (response.ok) {
+      const body = await response.json()
+      setChatHistory(body)
+    }
+  }
+
   useEffect(() => {
     fetchCategory()
     fetchCategoryQuestions()
@@ -66,16 +89,51 @@ const Categories = () => {
     // ALL SOCKET STUFF BELOW FOR NOW
     socket.on('connect', () => {
       console.log('Connection established!')
+
       socket.emit('connection', () => {
         console.log('finally established connection')
       })
       console.log('Socket ID', ` ${socket.id}!`)
+    })
+    socket.on('loggedin', (onlineUsers) => {
+      console.log('logged in successfully!')
+      // setLoggedIn(true);
+      setOnlineUsers(onlineUsers)
+
+      fetchChatHistory()
+
+      socket.on('newConnection', (onlineUsers) => {
+        console.log('a new client just connected!')
+        console.log('Online Users:', onlineUsers)
+        setOnlineUsers(onlineUsers)
+      })
     })
 
     // ALL SOCKET STUFF ABOVE FOR NOW
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  const handleUsernameSubmit = () => {
+    socket.emit('setUsername', {
+      userId: profileData._id,
+      name: profileData.name,
+      room
+    })
+  }
+  const sendMessage = () => {
+    // this function executes just for the sender for the message!
+    const newMessage = {
+      text: message,
+      // sender: username,
+      createdAt: new Date().toLocaleString('en-US')
+    }
+
+    socket.emit('sendMessage', { message, room })
+    setChatHistory([...chatHistory, newMessage])
+    // this is appending my new message to the chat history in this very moment
+    setMessage('')
+  }
 
   useEffect(() => {}, [])
 
@@ -105,7 +163,12 @@ const Categories = () => {
           </Col>
         </Row>
       </Container>
-      <ChatMain />
+      <ChatMain
+        handleUsernameSubmit={handleUsernameSubmit}
+        setMessage={setMessage}
+        chatHistory={chatHistory}
+        room={room}
+      />
     </>
   )
 }

@@ -113,7 +113,7 @@ body {
   min-height: 500px;
   max-height: 75vh;
   overflow: auto;
-  background-color: rgb(212, 219, 250);
+  background-color: white;
   z-index: 1;
 }
 .category-chat-box-col {
@@ -123,7 +123,8 @@ body {
 }
 
 .chat-popup-top {
-  background-color: rgb(119, 143, 252);
+  background-color: black;
+  color: white;
   padding-top: 12px;
   padding-bottom: 12px;
   padding-top: 12px;
@@ -136,8 +137,12 @@ body {
   background-color: #000;
   border-radius: 20px;
 }
+/* .main-popup-chat-col {
+  background-color: #000;
+} */
 .single-message-row {
   background: white;
+  color: black;
   border-radius: 15px;
   margin: 10px;
 }
@@ -217,4 +222,14 @@ body {
 }
 .great-helper {
   fill: green;
+}
+.sender {
+  font-weight: 700;
+}
+.message {
+  font-weight: 100;
+}
+.chat-icon-colors {
+  color: black;
+  background: white;
 }

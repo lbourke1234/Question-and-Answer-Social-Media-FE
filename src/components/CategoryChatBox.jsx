@@ -1,6 +1,6 @@
 import { Form, Col } from 'react-bootstrap'
 
-const CategoryChatBox = () => {
+const CategoryChatBox = ({ setMessage }) => {
   return (
     <Col md={12} className="category-chat-box-col">
       <Form.Control
@@ -9,6 +9,7 @@ const CategoryChatBox = () => {
         aria-describedby="passwordHelpBlock"
         placeholder="What would you like to say?"
         className="post-begin-text-box"
+        onChange={(e) => setMessage(e.target.value)}
       />
     </Col>
   )

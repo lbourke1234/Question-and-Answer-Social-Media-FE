@@ -1,29 +1,32 @@
 import { useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
 import CategoryChatBox from './CategoryChatBox'
 import CategoryChatTop from './CategoryChatTop'
 import PopupChatMain from './PopupChatMain'
 
-const ChatMain = () => {
+const ChatMain = ({ handleUsernameSubmit, setMessage, chatHistory, room }) => {
   const [openChat, setOpenChat] = useState(false)
 
   const toggleChat = () => setOpenChat(!openChat)
+
+  const profileData = useSelector((state) => state.profile)
 
   return (
     <>
       {openChat && (
         <div className="chat-popup-container d-flex flex-column">
-          <CategoryChatTop />
+          <CategoryChatTop room={room} />
 
-          <PopupChatMain />
+          <PopupChatMain chatHistory={chatHistory} />
 
-          <CategoryChatBox />
+          <CategoryChatBox setMessage={setMessage} />
         </div>
       )}
 
       <Container fluid className="chat-main-container">
         <Row>
-          <Col className="chat-main-col" onClick={toggleChat}>
+          <Col className="chat-main-col chat-icon-colors" onClick={toggleChat}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-message-circle"
@@ -35,6 +38,7 @@ const ChatMain = () => {
               fill="none"
               strokeLinecap="round"
               strokeLinejoin="round"
+              onClick={() => handleUsernameSubmit(profileData._id)}
             >
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
               <path d="M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1"></path>

@@ -1,5 +1,5 @@
-const CategoryChatTop = () => {
-  return <div className="chat-popup-top px-3">Group name goes here</div>
+const CategoryChatTop = ({ room }) => {
+  return <div className="chat-popup-top px-3">{room} Chat</div>
 }
 
 export default CategoryChatTop
