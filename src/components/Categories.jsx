@@ -12,15 +12,10 @@ import CategoryDetails from './CategoryDetails'
 import ChatMain from './ChatMain'
 import { io } from 'socket.io-client'
 
-// const ADDRESS = process.env.REACT_APP_SOCKET_URL
-// const socket = io(ADDRESS, { transports: ['websocket'] })
-const socket = io('http://localhost:5001', {
-  transports: ['websocket']
-})
+const ADDRESS = process.env.REACT_APP_SOCKET_URL
+const socket = io(ADDRESS, { transports: ['websocket'] })
 
 const Categories = () => {
-  // console.log('socket', socket)
-  const [onlineUsers, setOnlineUsers] = useState([])
   const [text, setText] = useState('')
 
   const profileData = useSelector((state) => state.profile)
@@ -81,7 +76,6 @@ const Categories = () => {
     )
     if (response.ok) {
       const body = await response.json()
-      console.log('chat history body fetch', body)
       setChatHistory(body)
     }
   }
@@ -96,10 +90,6 @@ const Categories = () => {
       dispatch(setProfileDataAction(body))
     }
   }
-
-  // useEffect(() => {
-
-  // }, [chatHistory])
 
   useEffect(() => {
     fetchCategory()
@@ -154,9 +144,6 @@ const Categories = () => {
       senderName: profileData.name,
       createdAt: new Date().toLocaleString('en-US')
     }
-
-    // console.log('in sendMessage emit')
-    // console.log('chat history before appending new message', chatHistory)
     setChatHistory([...chatHistory, newMessage])
     const catName = currentCategory.name
     const profileId = profileData._id
