@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Form, Button, Container } from 'react-bootstrap'
+import { Form, Button, Container, Row } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setBearerTokenAction } from '../redux/actions'
@@ -36,7 +36,8 @@ const LoginPage = () => {
   }
 
   return (
-    <Container>
+    <Container className="login-container">
+      <h1>Login Page</h1>
       <Form onSubmit={(e) => fetchLogin(e)}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
@@ -62,6 +63,7 @@ const LoginPage = () => {
           Submit
         </Button>
       </Form>
+      <h2 className="text-center mt-5">Please answer questions while you're here!</h2>
     </Container>
   )
 }

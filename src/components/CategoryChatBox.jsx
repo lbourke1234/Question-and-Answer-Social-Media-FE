@@ -6,6 +6,7 @@ const CategoryChatBox = ({ setMessage, sendMessage }) => {
       <Form
         onSubmit={(e) => {
           sendMessage(e)
+          setMessage('')
         }}
       >
         <Form.Control

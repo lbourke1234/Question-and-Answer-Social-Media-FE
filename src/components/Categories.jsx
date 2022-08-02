@@ -155,6 +155,8 @@ const Categories = () => {
       profileId,
       profileName
     })
+    console.log('e.whatever', e.target)
+    e.target.reset()
     setText('')
   }
 

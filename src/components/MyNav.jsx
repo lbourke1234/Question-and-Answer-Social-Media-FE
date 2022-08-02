@@ -75,11 +75,21 @@ const MyNav = () => {
               </svg>
             </Nav.Link>
             <Nav.Link href="profile">
-              <img
-                style={{ height: '35px', width: '35px', borderRadius: '50%' }}
-                src={profileData.avatar}
-                alt="placeholder"
-              ></img>
+              {profileData.avatar ? (
+                <img
+                  style={{ height: '35px', width: '35px', borderRadius: '50%' }}
+                  src={profileData.avatar}
+                  alt="placeholder"
+                ></img>
+              ) : (
+                <img
+                  style={{ height: '35px', width: '35px', borderRadius: '50%' }}
+                  src={
+                    'https://cvhrma.org/wp-content/uploads/2015/07/default-profile-photo-500x500.jpg'
+                  }
+                  alt="placeholder"
+                ></img>
+              )}
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
