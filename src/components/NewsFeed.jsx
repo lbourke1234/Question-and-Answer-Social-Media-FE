@@ -10,13 +10,6 @@ import {
   setProfileDataAction
 } from '../redux/actions/index.js'
 import RecentPostsContainer from './RecentPostsContainer'
-// import { io } from 'socket.io-client'
-
-// const ADDRESS = process.env.REACT_APP_SOCKET_URL
-// // const socket = io(ADDRESS, { transports: ['websocket'] })
-// const socket = io('http://localhost:5001', {
-//   transports: ['websocket']
-// })
 
 const NewsFeed = () => {
   const dispatch = useDispatch()
@@ -66,13 +59,6 @@ const NewsFeed = () => {
     fetchProfileData()
     fetchCategories()
 
-    // socket.on('connect', () => {
-    //   console.log('Connection established!')
-    //   socket.emit('connection', () => {
-    //     console.log('finally established connection')
-    //   })
-    //   console.log('Socket ID', ` ${socket.id}!`)
-    // })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -96,7 +82,7 @@ const NewsFeed = () => {
             allPosts.map((post) => <PostMainContainer key={post._id} post={post} />)}
         </Col>
         <Col md={3} className="recent-posts-container">
-          <RecentPostsContainer posts={allPosts} />
+          <RecentPostsContainer posts={allPosts} newPosts={newPosts} />
         </Col>
       </Row>
     </Container>

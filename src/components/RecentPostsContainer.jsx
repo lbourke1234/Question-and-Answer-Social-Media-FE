@@ -2,7 +2,7 @@ import RecentPosts from './RecentPosts'
 import { Container, Row } from 'react-bootstrap'
 import { useEffect, useState } from 'react'
 
-const RecentPostsContainer = ({ posts }) => {
+const RecentPostsContainer = ({ posts, newPosts }) => {
   const [recentPosts, setRecentPosts] = useState([])
 
   const fetchPostsByDate = async () => {
@@ -27,6 +27,12 @@ const RecentPostsContainer = ({ posts }) => {
         <h2>Recent Posts</h2>
       </Row>
       <Row>
+        {newPosts &&
+          newPosts.map((post) => (
+            <a className="recent-sidebar-a " href={`#${post._id}`} key={post._id}>
+              <RecentPosts key={post._id} post={post} />
+            </a>
+          ))}
         {recentPosts.map((post) => (
           <a className="recent-sidebar-a " href={`#${post._id}`} key={post._id}>
             <RecentPosts key={post._id} post={post} />
