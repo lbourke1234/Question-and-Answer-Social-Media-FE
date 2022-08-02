@@ -136,6 +136,7 @@ const Categories = () => {
       name: profileData.name,
       room
     })
+    console.log('connecting to room right now')
   }
   const sendMessage = (e) => {
     e.preventDefault()
