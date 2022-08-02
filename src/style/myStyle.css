@@ -236,4 +236,10 @@ body {
 .login-container {
   margin-top: 50px;
   max-width: 700px;
+  background: white;
+  border-radius: 15px;
+  padding-bottom: 30px;
+  padding-top: 40px;
+  padding-left: 24px;
+  padding-right: 24px;
 }
