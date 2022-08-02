@@ -148,6 +148,8 @@ body {
 }
 .wider-container {
   max-width: 1700px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 .left-category-name-text {
   font-size: 20px;
@@ -199,11 +201,11 @@ body {
   border-radius: 20px;
 }
 .profile-main-container {
-  height: 80vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  height: 70vh;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* flex-direction: column; */
   border-radius: 15%;
 }
 .check-your-kudos {
@@ -242,4 +244,31 @@ body {
   padding-top: 40px;
   padding-left: 24px;
   padding-right: 24px;
+}
+.profile-text-row-column {
+  width: 500px;
+}
+.profile-col-height {
+  height: 170px;
+}
+.profile-col-height-a {
+  height: 160px;
+}
+.navbar-text {
+  font-size: 35px;
+}
+.input-nav {
+  font-size: 24px;
+  padding-left: 24px;
+}
+.border-left-categories {
+  border-bottom: solid black;
+  border-width: 0.1ch;
+  padding-bottom: 10px;
+}
+.custom-profile-posts {
+  background-color: rgb(39, 39, 39);
+}
+.opacity-difference {
+  opacity: 100%;
 }

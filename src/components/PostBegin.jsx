@@ -10,7 +10,7 @@ const PostBegin = () => {
   return (
     <Container className="mt-3 pt-3 white-background slight-border-radius">
       <Row>
-        <Col md={2}>
+        <Col md={1}>
           <img
             style={{ height: '40px', width: '40px' }}
             src={profileData.avatar}
@@ -24,7 +24,7 @@ const PostBegin = () => {
       </Row>
       <Row className="py-2">
         <Col md={4} className="d-flex justify-content-center align-items-center">
-          <span>Ask</span>
+          <span className="mr-2">Ask</span>
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +45,7 @@ const PostBegin = () => {
           </span>
         </Col>
         <Col md={4} className="d-flex justify-content-center align-items-center">
-          <span>Answer</span>
+          <span className="mr-2">Answer</span>
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +66,7 @@ const PostBegin = () => {
           </span>
         </Col>
         <Col md={4} className="d-flex justify-content-center align-items-center">
-          <span>Share</span>
+          <span className="mr-2">Share</span>
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"

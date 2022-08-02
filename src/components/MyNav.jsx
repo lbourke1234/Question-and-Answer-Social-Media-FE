@@ -7,7 +7,9 @@ const MyNav = () => {
   return (
     <Navbar expand="lg" className="navBar-sticky white-background">
       <Container className="wider-container">
-        <Navbar.Brand href="/">Questions</Navbar.Brand>
+        <Navbar.Brand href="/" className="navbar-text">
+          Questions
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="my-flex-grow">
@@ -54,7 +56,7 @@ const MyNav = () => {
               id="inputPassword5"
               aria-describedby="passwordHelpBlock"
               placeholder="Search for something"
-              className="mt-2"
+              className="mt-2 py-4 input-nav"
             />
             <Nav.Link href="#link">
               <svg

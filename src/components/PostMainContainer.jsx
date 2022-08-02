@@ -130,8 +130,8 @@ const PostMainContainer = ({ post, newPosts }) => {
       <Row>
         <Col>
           <Row>
-            <Col>
-              <span className="bold-text">{post.content.heading}</span>
+            <Col className="pt-2">
+              <span className="bold-text ">{post.content.heading}</span>
             </Col>
           </Row>
           <Row>
@@ -143,7 +143,7 @@ const PostMainContainer = ({ post, newPosts }) => {
                 style={{ height: '600px', width: '100%' }}
                 src={post.content.image}
                 alt="placeholder"
-                className="mt-2"
+                className="mt-3"
               ></img>
             </Row>
           )}
