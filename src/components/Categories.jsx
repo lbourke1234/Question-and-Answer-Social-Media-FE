@@ -155,7 +155,7 @@ const Categories = () => {
       profileId,
       profileName
     })
-    console.log('e.whatever', e.target)
+    console.log('After emit sendMessage')
     // e.target.reset()
     setText('')
   }
