@@ -97,6 +97,7 @@ const Categories = () => {
     fetchProfileData()
     setRoom(location.state.name.charAt(0).toUpperCase() + location.state.name.slice(1))
     fetchChatHistory()
+    // handleUsernameSubmit()
 
     // ALL SOCKET STUFF BELOW FOR NOW
     socket.on('connect', () => {

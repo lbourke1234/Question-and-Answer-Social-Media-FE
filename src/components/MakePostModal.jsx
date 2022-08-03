@@ -101,7 +101,7 @@ const MakePostModal = ({ token }) => {
           <Form.Label className="modal-title-text">Title</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Yout title goes here"
+            placeholder="Your title goes here"
             className="slight-border-radius"
             onChange={(e) => setHeading(e.target.value)}
           />
