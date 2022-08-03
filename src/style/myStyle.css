@@ -156,7 +156,8 @@ body {
   font-weight: 500;
 }
 .likes-count-text {
-  color: green;
+  color: blue;
+  font-size: 22px;
 }
 .icon-hover:hover {
   cursor: pointer;
@@ -223,7 +224,7 @@ body {
   color: red;
 }
 .great-helper {
-  fill: green;
+  fill: gold;
 }
 .sender {
   font-weight: 700;
@@ -267,8 +268,18 @@ body {
   padding-bottom: 10px;
 }
 .custom-profile-posts {
-  background-color: rgb(39, 39, 39);
+  background-color: rgb(228 228 228);
+  color: black;
 }
 .opacity-difference {
   opacity: 100%;
+}
+.margin-bottom-custom-profile {
+  margin-bottom: 30px;
+}
+.left-login-container {
+  background-color: black;
+  height: 100vh;
+  margin-top: 50px;
+  border-radius: 15px;
 }

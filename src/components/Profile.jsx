@@ -76,7 +76,14 @@ const Profile = () => {
           {profileData.kudos >= 10 && (
             <>
               <span>
-                <svg
+                <img
+                  style={{ height: '120px', width: '120px' }}
+                  src={'https://img.icons8.com/stickers/100/000000/prize.png'}
+                  alt="placeholder"
+                  className="profile-image"
+                ></img>
+
+                {/* <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="icon icon-tabler icon-tabler-trophy great-helper"
                   width="120"
@@ -95,7 +102,7 @@ const Profile = () => {
                   <path d="M17 4v8a5 5 0 0 1 -10 0v-8" />
                   <circle cx="5" cy="9" r="2" />
                   <circle cx="19" cy="9" r="2" />
-                </svg>
+                </svg> */}
               </span>
             </>
             // ) : (
@@ -137,7 +144,7 @@ const Profile = () => {
               .slice(0, 8)
               .reverse()
               .map((post) => (
-                <Col md={3} className="profile-col-height">
+                <Col md={3} className="profile-col-height margin-bottom-custom-profile">
                   <a
                     className="recent-sidebar-a profile-col-height-a"
                     href={`#${post._id}`}

@@ -63,7 +63,7 @@ const LoginPage = () => {
           Submit
         </Button>
       </Form>
-      <h2 className="text-center mt-5">Please answer questions while you're here!</h2>
+      {/* <h2 className="text-center mt-5">Please answer questions while you're here!</h2> */}
     </Container>
   )
 }

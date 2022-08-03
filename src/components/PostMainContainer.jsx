@@ -75,7 +75,7 @@ const PostMainContainer = ({ post, newPosts }) => {
       <Row>
         <Col md={1}>
           <img
-            style={{ height: '40px', width: '40px', borderRadius: '50%' }}
+            style={{ height: '60px', width: '60px', borderRadius: '50%' }}
             src={post.author.avatar}
             alt="placeholder"
           ></img>
@@ -97,7 +97,14 @@ const PostMainContainer = ({ post, newPosts }) => {
             </Col>
             <Col className="d-flex justify-content-end">
               <span>
-                <svg
+                <img
+                  style={{ height: '25px', width: '100%' }}
+                  src={'https://img.icons8.com/stickers/100/000000/x--v1.png'}
+                  alt="placeholder"
+                  className="mt-3"
+                ></img>
+
+                {/* <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="icon icon-tabler icon-tabler-x"
                   width="26"
@@ -112,7 +119,7 @@ const PostMainContainer = ({ post, newPosts }) => {
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <line x1="18" y1="6" x2="6" y2="18" />
                   <line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
+                </svg> */}
               </span>
             </Col>
           </Row>
@@ -152,7 +159,17 @@ const PostMainContainer = ({ post, newPosts }) => {
       <Row className="py-3">
         <Col className="d-flex flex-direction-column align-items-center">
           <span className="">
-            <svg
+            <img
+              style={{ height: '35px', width: '100%' }}
+              src={
+                'https://img.icons8.com/stickers/100/000000/facebook-like-skin-type-1.png'
+              }
+              alt="placeholder"
+              className="mt-3 icon-hover"
+              onClick={() => addLikeFetch()}
+            ></img>
+
+            {/* <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-thumb-up mr-3 icon-hover "
               width="26"
@@ -167,10 +184,17 @@ const PostMainContainer = ({ post, newPosts }) => {
             >
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" />
-            </svg>
+            </svg> */}
           </span>
-          <span>
-            <svg
+          <span className="ml-3 mr-3">
+            <img
+              style={{ height: '35px', width: '100%' }}
+              src={'https://img.icons8.com/stickers/100/000000/thumbs-down.png'}
+              alt="placeholder"
+              className="mt-3 icon-hover"
+              onClick={() => removeLikeFetch()}
+            ></img>
+            {/* <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-thumb-down mr-3 icon-hover"
               width="26"
@@ -185,11 +209,19 @@ const PostMainContainer = ({ post, newPosts }) => {
             >
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path d="M7 13v-8a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v7a1 1 0 0 0 1 1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 4 0v-5h3a2 2 0 0 0 2 -2l-1 -5a2 3 0 0 0 -2 -2h-7a3 3 0 0 0 -3 3" />
-            </svg>
+            </svg> */}
           </span>
-          <span className="likes-count-text">{likesCount}</span>
+          <span className="likes-count-text mt-3 mr-3">{likesCount}</span>
           <span>
-            <svg
+            <img
+              style={{ height: '35px', width: '100%' }}
+              src={'https://img.icons8.com/stickers/100/000000/comments.png'}
+              alt="placeholder"
+              className="mt-3 icon-hover"
+              onClick={() => setCommentsOpen(!commentOpen)}
+            ></img>
+
+            {/* <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-message-dots ml-3 icon-hover"
               width="26"
@@ -207,12 +239,20 @@ const PostMainContainer = ({ post, newPosts }) => {
               <line x1="12" y1="11" x2="12" y2="11.01" />
               <line x1="8" y1="11" x2="8" y2="11.01" />
               <line x1="16" y1="11" x2="16" y2="11.01" />
-            </svg>
+            </svg> */}
           </span>
         </Col>
         <Col className="d-flex justify-content-end">
-          <span className="post-hover">
-            <svg
+          <span>
+            <img
+              style={{ height: '35px', width: '100%' }}
+              src={'https://img.icons8.com/stickers/100/000000/more.png'}
+              alt="placeholder"
+              className="mt-3 icon-hover"
+              onClick={() => setCommentsOpen(!commentOpen)}
+            ></img>
+
+            {/* <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-dots"
               width="26"
@@ -228,7 +268,7 @@ const PostMainContainer = ({ post, newPosts }) => {
               <circle cx="5" cy="12" r="1" />
               <circle cx="12" cy="12" r="1" />
               <circle cx="19" cy="12" r="1" />
-            </svg>
+            </svg> */}
           </span>
         </Col>
       </Row>

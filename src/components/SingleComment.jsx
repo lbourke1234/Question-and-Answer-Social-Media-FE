@@ -109,7 +109,16 @@ const SingleComment = ({ comment, index, newestComments }) => {
             <Row className="pt-3 pb-2">
               <Col className="d-flex flex-direction-column align-items-center">
                 <span>
-                  <svg
+                  <img
+                    style={{ height: '35px', width: '100%' }}
+                    src={
+                      'https://img.icons8.com/stickers/100/000000/facebook-like-skin-type-1.png'
+                    }
+                    alt="placeholder"
+                    className="mt-3 icon-hover"
+                    onClick={() => handleLikeComment()}
+                  ></img>
+                  {/* <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="icon icon-tabler icon-tabler-thumb-up mr-3 icon-hover "
                     width="26"
@@ -124,10 +133,17 @@ const SingleComment = ({ comment, index, newestComments }) => {
                   >
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" />
-                  </svg>
+                  </svg> */}
                 </span>
-                <span>
-                  <svg
+                <span className="ml-2 mr-3">
+                  <img
+                    style={{ height: '35px', width: '100%' }}
+                    src={'https://img.icons8.com/stickers/100/000000/thumbs-down.png'}
+                    alt="placeholder"
+                    className="mt-3 icon-hover"
+                    onClick={() => handleDislikeComment()}
+                  ></img>
+                  {/* <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="icon icon-tabler icon-tabler-thumb-down mr-3 icon-hover"
                     width="26"
@@ -142,9 +158,9 @@ const SingleComment = ({ comment, index, newestComments }) => {
                   >
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M7 13v-8a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v7a1 1 0 0 0 1 1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 4 0v-5h3a2 2 0 0 0 2 -2l-1 -5a2 3 0 0 0 -2 -2h-7a3 3 0 0 0 -3 3" />
-                  </svg>
+                  </svg> */}
                 </span>
-                <span>{likesCount}</span>
+                <span className="likes-count-text mt-3">{likesCount}</span>
               </Col>
               {console.log('comment', comment)}
               {profileData._id === comment.author && (
@@ -194,7 +210,16 @@ const SingleComment = ({ comment, index, newestComments }) => {
             <Row className="pt-3 pb-2">
               <Col className="d-flex flex-direction-column align-items-center">
                 <span>
-                  <svg
+                  <img
+                    style={{ height: '35px', width: '100%' }}
+                    src={
+                      'https://img.icons8.com/stickers/100/000000/facebook-like-skin-type-1.png'
+                    }
+                    alt="placeholder"
+                    className="mt-3 icon-hover"
+                    onClick={() => handleLikeComment()}
+                  ></img>
+                  {/* <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="icon icon-tabler icon-tabler-thumb-up mr-3 icon-hover"
                     width="26"
@@ -209,10 +234,17 @@ const SingleComment = ({ comment, index, newestComments }) => {
                   >
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" />
-                  </svg>
+                  </svg> */}
                 </span>
-                <span>
-                  <svg
+                <span className="ml-2 mr-3">
+                  <img
+                    style={{ height: '35px', width: '100%' }}
+                    src={'https://img.icons8.com/stickers/100/000000/thumbs-down.png'}
+                    alt="placeholder"
+                    className="mt-3 icon-hover"
+                    onClick={() => handleDislikeComment()}
+                  ></img>
+                  {/* <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="icon icon-tabler icon-tabler-thumb-down mr-3 icon-hover"
                     width="26"
@@ -227,9 +259,9 @@ const SingleComment = ({ comment, index, newestComments }) => {
                   >
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M7 13v-8a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v7a1 1 0 0 0 1 1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 4 0v-5h3a2 2 0 0 0 2 -2l-1 -5a2 3 0 0 0 -2 -2h-7a3 3 0 0 0 -3 3" />
-                  </svg>
+                  </svg> */}
                 </span>
-                <span>{likesCount}</span>
+                <span className="likes-count-text mt-3">{likesCount}</span>
               </Col>
               {profileData._id === comment.author && (
                 <ModalReadyToEditComment comment={comment} />
