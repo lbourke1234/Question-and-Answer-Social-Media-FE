@@ -63,7 +63,10 @@ const LoginPage = () => {
           Submit
         </Button>
       </Form>
-      {/* <h2 className="text-center mt-5">Please answer questions while you're here!</h2> */}
+      <div className="d-flex justify-content-between">
+        <span>Don't have an account yet?</span>
+        <span onClick={() => navigate('/register')}>Register here!</span>
+      </div>
     </Container>
   )
 }

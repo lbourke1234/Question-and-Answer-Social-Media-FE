@@ -1,4 +1,4 @@
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 import PostBegin from './PostBegin'
 import PostMainContainer from './PostMainContainer'
 import LeftCategories from './LeftCategories'
@@ -10,8 +10,10 @@ import {
   setProfileDataAction
 } from '../redux/actions/index.js'
 import RecentPostsContainer from './RecentPostsContainer'
+import { useNavigate } from 'react-router-dom'
 
 const NewsFeed = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const newPosts = useSelector((state) => state.newestPost)
@@ -64,27 +66,31 @@ const NewsFeed = () => {
 
   return (
     <Container className="wider-container">
-      <Row>
-        <Col md={2}>
-          <Container fluid className="categories-sticky">
-            {allCategories.map((category) => (
-              <LeftCategories key={category._id} category={category} />
-            ))}
-          </Container>
-        </Col>
-        <Col md={7}>
-          <PostBegin />
-          {newPosts &&
-            newPosts.map((post) => (
-              <PostMainContainer key={post._id} post={post} newPosts={newPosts} />
-            ))}
-          {allPosts &&
-            allPosts.map((post) => <PostMainContainer key={post._id} post={post} />)}
-        </Col>
-        <Col md={3} className="recent-posts-container">
-          <RecentPostsContainer posts={allPosts} newPosts={newPosts} />
-        </Col>
-      </Row>
+      {!resizedToken ? (
+        navigate('/login')
+      ) : (
+        <Row>
+          <Col md={2}>
+            <Container fluid className="categories-sticky">
+              {allCategories.map((category) => (
+                <LeftCategories key={category._id} category={category} />
+              ))}
+            </Container>
+          </Col>
+          <Col md={7}>
+            <PostBegin />
+            {newPosts &&
+              newPosts.map((post) => (
+                <PostMainContainer key={post._id} post={post} newPosts={newPosts} />
+              ))}
+            {allPosts &&
+              allPosts.map((post) => <PostMainContainer key={post._id} post={post} />)}
+          </Col>
+          <Col md={3} className="recent-posts-container">
+            <RecentPostsContainer posts={allPosts} newPosts={newPosts} />
+          </Col>
+        </Row>
+      )}
     </Container>
   )
 }
