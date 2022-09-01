@@ -283,3 +283,10 @@ body {
   margin-top: 50px;
   border-radius: 15px;
 }
+.register-here-button {
+  font-size: 18px;
+}
+.register-here-button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

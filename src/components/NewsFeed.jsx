@@ -22,7 +22,10 @@ const NewsFeed = () => {
   const allCategories = useSelector((state) => state.categories)
 
   const token = localStorage.getItem('token')
-  const resizedToken = token.substring(1, token.length - 1)
+  let resizedToken = ''
+  if (token) {
+    resizedToken = token.substring(1, token.length - 1)
+  }
 
   const fetchProfileData = async () => {
     const response = await fetch(process.env.REACT_APP_USER_ME_URL, {
@@ -66,6 +69,7 @@ const NewsFeed = () => {
 
   return (
     <Container className="wider-container">
+      {console.log('token', resizedToken)}
       {!resizedToken ? (
         navigate('/login')
       ) : (

@@ -63,10 +63,9 @@ const LoginPage = () => {
           Submit
         </Button>
       </Form>
-      <div className="d-flex justify-content-between">
-        <span>Don't have an account yet?</span>
-        <span onClick={() => navigate('/register')}>Register here!</span>
-      </div>
+      <span className="register-here-button" onClick={() => navigate('/register')}>
+        Click here to create an account!
+      </span>
     </Container>
   )
 }
