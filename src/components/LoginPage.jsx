@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Form, Button, Container } from 'react-bootstrap'
+import { Form, Button, Container, Alert } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setBearerTokenAction } from '../redux/actions'
@@ -7,6 +7,7 @@ import { setBearerTokenAction } from '../redux/actions'
 const LoginPage = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [loginFailed, setLoginFailed] = useState(false)
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -32,12 +33,13 @@ const LoginPage = () => {
       navigate('/')
     } else {
       console.log('login not successful')
+      setLoginFailed(true)
     }
   }
 
   return (
     <Container className="login-container">
-      <h1>Login Page</h1>
+      <h1>Existing users log in here!</h1>
       <Form onSubmit={(e) => fetchLogin(e)}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
@@ -62,6 +64,11 @@ const LoginPage = () => {
         <Button variant="primary" type="submit">
           Submit
         </Button>
+        {loginFailed && (
+          <Alert className="mt-3" variant={'danger'}>
+            Email and Password don't match. Please click below to register!
+          </Alert>
+        )}
       </Form>
       <span className="register-here-button" onClick={() => navigate('/register')}>
         Click here to create an account!

@@ -27,7 +27,7 @@ const RegisterPage = () => {
   }
   return (
     <Container className="login-container">
-      <h1>Registration Page</h1>
+      <h1>New users signup here!</h1>
       <Form
         onSubmit={(e) => {
           registerNewUser(e)
