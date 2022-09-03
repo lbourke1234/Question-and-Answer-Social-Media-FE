@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Alert } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import CategoryChatBox from './CategoryChatBox'
 import CategoryChatTop from './CategoryChatTop'
@@ -32,6 +32,11 @@ const ChatMain = ({
 
       <Container fluid className="chat-main-container">
         <Row>
+          {!openChat && (
+            <Alert onClick={toggleChat} className="chat-here-text" variant="light">
+              Click here to open chat!
+            </Alert>
+          )}
           <Col className="chat-main-col chat-icon-colors" onClick={toggleChat}>
             <svg
               xmlns="http://www.w3.org/2000/svg"

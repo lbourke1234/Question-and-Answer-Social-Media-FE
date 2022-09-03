@@ -290,3 +290,9 @@ body {
   cursor: pointer;
   text-decoration: underline;
 }
+.chat-here-text {
+  font-size: 22px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+}
