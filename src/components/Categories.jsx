@@ -6,19 +6,32 @@ import { useEffect, useState } from 'react'
 import {
   setCurrentCategoryAction,
   setCurrentCategoryQuestionsAction,
-  setProfileDataAction
+  setProfileDataAction,
+  setClickedCategoryAction,
+  setCategoriesAction
 } from '../redux/actions'
 import CategoryDetails from './CategoryDetails'
 import ChatMain from './ChatMain'
 import { io } from 'socket.io-client'
+import LeftCategories from './LeftCategories'
 
 const ADDRESS = process.env.REACT_APP_SOCKET_URL
 const socket = io(ADDRESS, { transports: ['websocket'] })
 
 const Categories = () => {
   const [text, setText] = useState('')
-
+  const allCategories = useSelector((state) => state.categories)
+  const hardCodedCategories = [
+    'Philosophy',
+    'Religion',
+    'Free Speech',
+    'Technology',
+    'Sports',
+    'Politics',
+    'Health & Wellness'
+  ]
   const profileData = useSelector((state) => state.profile)
+  const clickedCategory = useSelector((state) => state.clickedCategory)
 
   const [chatHistory, setChatHistory] = useState([])
 
@@ -35,7 +48,7 @@ const Categories = () => {
 
   const fetchCategoryQuestions = async () => {
     const response = await fetch(
-      `${process.env.REACT_APP_GET_CATEGORY_QUESTIONS}${location.state.name}`,
+      `${process.env.REACT_APP_GET_CATEGORY_QUESTIONS}${clickedCategory}`,
       {
         headers: {
           Authorization: `Bearer ${resizedToken}`
@@ -50,7 +63,7 @@ const Categories = () => {
 
   const fetchCategory = async () => {
     const response = await fetch(
-      `${process.env.REACT_APP_GET_SINGLE_CATEGORY}${location.state.name}`,
+      `${process.env.REACT_APP_GET_SINGLE_CATEGORY}${clickedCategory}`,
       {
         headers: {
           Authorization: `Bearer ${resizedToken}`
@@ -66,8 +79,8 @@ const Categories = () => {
   const fetchChatHistory = async () => {
     const response = await fetch(
       process.env.REACT_APP_CHAT_HISTORY +
-        location.state.name.charAt(0).toUpperCase() +
-        location.state.name.slice(1),
+        clickedCategory.charAt(0).toUpperCase() +
+        clickedCategory.slice(1),
       {
         headers: {
           Authorization: `Bearer ${resizedToken}`
@@ -95,8 +108,9 @@ const Categories = () => {
     fetchCategory()
     fetchCategoryQuestions()
     fetchProfileData()
-    setRoom(location.state.name.charAt(0).toUpperCase() + location.state.name.slice(1))
+    setRoom(clickedCategory.charAt(0).toUpperCase() + clickedCategory.slice(1))
     fetchChatHistory()
+    fetchCategories()
     // handleUsernameSubmit()
 
     // ALL SOCKET STUFF BELOW FOR NOW
@@ -131,6 +145,16 @@ const Categories = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  useEffect(() => {
+    fetchCategoryQuestions()
+    fetchCategory()
+    fetchChatHistory()
+    setRoom(clickedCategory.charAt(0).toUpperCase() + clickedCategory.slice(1))
+    fetchChatHistory()
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [clickedCategory])
+
   const handleUsernameSubmit = () => {
     socket.emit('setUsername', {
       userId: profileData._id,
@@ -161,6 +185,13 @@ const Categories = () => {
     // e.target.reset()
     setText('')
   }
+  const fetchCategories = async () => {
+    const response = await fetch(process.env.REACT_APP_GET_CATEGORIES)
+    if (response.ok) {
+      const body = await response.json()
+      dispatch(setCategoriesAction(body))
+    }
+  }
 
   useEffect(() => {}, [])
 
@@ -180,7 +211,12 @@ const Categories = () => {
       </Jumbotron>
       <Container className="wider-container">
         <Row>
-          <Col md={9}>
+          <Col md={2}>
+            {allCategories.map((category) => (
+              <LeftCategories key={category._id} category={category} />
+            ))}
+          </Col>
+          <Col md={7}>
             {catQuestions.map((q) => (
               <PostMainContainer key={q._id} post={q} />
             ))}

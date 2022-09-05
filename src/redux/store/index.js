@@ -9,6 +9,7 @@ import currentPostCommentsReducer from '../reducers/currentPostComments'
 import likesCountReducer from '../reducers/likesCount'
 import newestCommentsReducer from '../reducers/newestComments'
 import newestPostReducer from '../reducers/newestPost'
+import clickedCategoriesReducer from '../reducers/clickedCategory'
 
 const bigReducer = combineReducers({
   user: userReducer,
@@ -20,7 +21,8 @@ const bigReducer = combineReducers({
   currentPostComments: currentPostCommentsReducer,
   likesCount: likesCountReducer,
   newestComments: newestCommentsReducer,
-  newestPost: newestPostReducer
+  newestPost: newestPostReducer,
+  clickedCategory: clickedCategoriesReducer
 })
 
 const store = configureStore({

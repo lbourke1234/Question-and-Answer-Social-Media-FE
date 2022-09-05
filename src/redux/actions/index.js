@@ -10,6 +10,7 @@ export const SET_CURRENT_POST_COMMENTS = 'SET_CURRENT_POST_COMMENTS'
 export const SET_LIKES_COUNT = 'SET_LIKES_COUNT'
 export const ADD_NEW_COMMENT = 'ADD_NEW_COMMENT'
 export const ADD_NEWEST_POST = 'ADD_NEWEST_POST'
+export const SET_CLICKED_CATEGORY = 'SET_CLICKED_CATEGORY'
 
 export const setBearerTokenAction = (token) => ({
   type: SET_BEARER_TOKEN,
@@ -50,6 +51,10 @@ export const addNewCommentAction = (comment) => ({
 export const addNewestPostAction = (post) => ({
   type: ADD_NEWEST_POST,
   payload: post
+})
+export const setClickedCategoryAction = (category) => ({
+  type: SET_CLICKED_CATEGORY,
+  payload: category
 })
 // export const addLikeAndKudosAction = (post) => ({
 //   type: ADD_LIKE_AND_KUDOS,

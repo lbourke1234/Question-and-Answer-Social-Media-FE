@@ -1,12 +1,19 @@
 import { Row, Col } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { setClickedCategoryAction } from '../redux/actions'
 
 const LeftCategories = ({ category }) => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   return (
     <Row
       className="my-3 categories-sticky left-categories-hover border-left-categories"
-      onClick={() => navigate('/categories', { state: { name: category.name } })}
+      onClick={() => {
+        navigate('/categories', { state: { name: category.name } })
+        dispatch(setClickedCategoryAction(category.name))
+        console.log(category.name)
+      }}
     >
       <Col md={1}>
         <img
