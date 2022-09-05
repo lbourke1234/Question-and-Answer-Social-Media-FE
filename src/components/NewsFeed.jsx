@@ -17,6 +17,8 @@ const NewsFeed = () => {
   const dispatch = useDispatch()
 
   const [postLoading, setPostLoading] = useState(true)
+  const [categoriesLoading, setCategoriesLoading] = useState(true)
+  const [recentLoading, setRecentLoading] = useState(true)
 
   const newPosts = useSelector((state) => state.newestPost)
 
@@ -51,6 +53,7 @@ const NewsFeed = () => {
       const body = await response.json()
       dispatch(setPostDataAction(body))
       setPostLoading(false)
+      setRecentLoading(false)
     }
   }
 
@@ -61,6 +64,11 @@ const NewsFeed = () => {
       dispatch(setCategoriesAction(body))
     }
   }
+  useEffect(() => {
+    if (allCategories.length > 0) {
+      setCategoriesLoading(false)
+    }
+  }, [allCategories])
 
   useEffect(() => {
     fetchPostData()
@@ -79,24 +87,35 @@ const NewsFeed = () => {
         <Row>
           <Col md={2}>
             <Container fluid className="categories-sticky">
-              {allCategories.map((category) => (
-                <LeftCategories key={category._id} category={category} />
-              ))}
+              {categoriesLoading ? (
+                <Spinner animation="border" variant="info" />
+              ) : (
+                allCategories.map((category) => (
+                  <LeftCategories key={category._id} category={category} />
+                ))
+              )}
             </Container>
           </Col>
           <Col md={7}>
             <PostBegin />
-            {postLoading && <Spinner className="" animation="border" variant="info" />}
-            {newPosts.map((post) => (
-              <PostMainContainer key={post._id} post={post} newPosts={newPosts} />
-            ))}
+            {postLoading ? (
+              <Spinner className="post-spinner" animation="border" variant="info" />
+            ) : (
+              newPosts.map((post) => (
+                <PostMainContainer key={post._id} post={post} newPosts={newPosts} />
+              ))
+            )}
 
             {allPosts.map((post) => (
               <PostMainContainer key={post._id} post={post} />
             ))}
           </Col>
           <Col md={3} className="recent-posts-container">
-            <RecentPostsContainer posts={allPosts} newPosts={newPosts} />
+            {recentLoading ? (
+              <Spinner animation="border" variant="info" />
+            ) : (
+              <RecentPostsContainer posts={allPosts} newPosts={newPosts} />
+            )}
           </Col>
         </Row>
       )}

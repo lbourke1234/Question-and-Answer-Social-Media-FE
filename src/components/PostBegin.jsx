@@ -1,23 +1,36 @@
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Spinner } from 'react-bootstrap'
 import MakePostModal from './MakePostModal'
 import { useSelector } from 'react-redux/es/exports'
+import { useState } from 'react'
+import { useEffect } from 'react'
 // import askIcon from '../icons'
 
 const PostBegin = () => {
   const profileData = useSelector((state) => state.profile)
   const token = localStorage.getItem('token')
   const resizedToken = token.substring(1, token.length - 1)
+  const [imageLoading, setImageLoading] = useState(true)
+
+  useEffect(() => {
+    if (profileData.avatar) {
+      setImageLoading(false)
+    }
+  }, [profileData])
 
   return (
     <Container className="mt-3 pt-3 white-background slight-border-radius">
       <Row>
         <Col md={1}>
-          <img
-            style={{ height: '40px', width: '40px' }}
-            src={profileData.avatar}
-            alt="placeholder"
-            className="profile-image"
-          ></img>
+          {imageLoading ? (
+            <Spinner animation="border" variant="info" />
+          ) : (
+            <img
+              style={{ height: '40px', width: '40px' }}
+              src={profileData.avatar}
+              alt="placeholder"
+              className="profile-image"
+            ></img>
+          )}
         </Col>
         <Col md={10}>
           <MakePostModal token={resizedToken} />

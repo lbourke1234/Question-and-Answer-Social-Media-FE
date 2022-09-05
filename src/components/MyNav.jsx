@@ -1,8 +1,17 @@
-import { Container, Navbar, Nav, Form } from 'react-bootstrap'
+import { useEffect } from 'react'
+import { useState } from 'react'
+import { Container, Navbar, Nav, Form, Spinner } from 'react-bootstrap'
 import { useSelector } from 'react-redux/es/hooks/useSelector'
 
 const MyNav = () => {
   const profileData = useSelector((state) => state.profile)
+  const [imageLoading, setImageLoading] = useState(true)
+
+  useEffect(() => {
+    if (profileData.avatar) {
+      setImageLoading(false)
+    }
+  }, [profileData])
 
   return (
     <Navbar expand="lg" className="navBar-sticky white-background">
@@ -77,7 +86,9 @@ const MyNav = () => {
               </svg>
             </Nav.Link>
             <Nav.Link href="profile">
-              {profileData.avatar ? (
+              {imageLoading ? (
+                <Spinner animation="border" variant="info" />
+              ) : profileData.avatar ? (
                 <img
                   style={{ height: '35px', width: '35px', borderRadius: '50%' }}
                   src={profileData.avatar}
