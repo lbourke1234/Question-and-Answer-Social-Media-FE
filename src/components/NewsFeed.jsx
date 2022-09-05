@@ -1,8 +1,8 @@
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Container, Row, Col, Button, Spinner } from 'react-bootstrap'
 import PostBegin from './PostBegin'
 import PostMainContainer from './PostMainContainer'
 import LeftCategories from './LeftCategories'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   setCategoriesAction,
@@ -15,6 +15,8 @@ import { useNavigate } from 'react-router-dom'
 const NewsFeed = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+
+  const [postLoading, setPostLoading] = useState(true)
 
   const newPosts = useSelector((state) => state.newestPost)
 
@@ -48,6 +50,7 @@ const NewsFeed = () => {
     if (response.ok) {
       const body = await response.json()
       dispatch(setPostDataAction(body))
+      setPostLoading(false)
     }
   }
 
@@ -83,12 +86,14 @@ const NewsFeed = () => {
           </Col>
           <Col md={7}>
             <PostBegin />
-            {newPosts &&
-              newPosts.map((post) => (
-                <PostMainContainer key={post._id} post={post} newPosts={newPosts} />
-              ))}
-            {allPosts &&
-              allPosts.map((post) => <PostMainContainer key={post._id} post={post} />)}
+            {postLoading && <Spinner className="" animation="border" variant="info" />}
+            {newPosts.map((post) => (
+              <PostMainContainer key={post._id} post={post} newPosts={newPosts} />
+            ))}
+
+            {allPosts.map((post) => (
+              <PostMainContainer key={post._id} post={post} />
+            ))}
           </Col>
           <Col md={3} className="recent-posts-container">
             <RecentPostsContainer posts={allPosts} newPosts={newPosts} />
