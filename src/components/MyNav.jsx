@@ -87,7 +87,7 @@ const MyNav = () => {
             </Nav.Link>
             <Nav.Link href="profile">
               {imageLoading ? (
-                <Spinner animation="grow" variant="info" />
+                <Spinner animation="border" variant="info" />
               ) : profileData.avatar ? (
                 <img
                   style={{ height: '35px', width: '35px', borderRadius: '50%' }}

@@ -22,7 +22,7 @@ const PostBegin = () => {
       <Row>
         <Col md={1}>
           {imageLoading ? (
-            <Spinner animation="grow" variant="info" />
+            <Spinner animation="border" variant="info" />
           ) : (
             <img
               style={{ height: '40px', width: '40px' }}

@@ -88,7 +88,7 @@ const NewsFeed = () => {
           <Col md={2}>
             <Container fluid className="categories-sticky">
               {categoriesLoading ? (
-                <Spinner animation="grow" variant="info" />
+                <Spinner animation="border" variant="info" />
               ) : (
                 allCategories.map((category) => (
                   <LeftCategories key={category._id} category={category} />
@@ -99,7 +99,7 @@ const NewsFeed = () => {
           <Col md={7}>
             <PostBegin />
             {postLoading ? (
-              <Spinner className="post-spinner" animation="grow" variant="info" />
+              <Spinner className="post-spinner" animation="border" variant="info" />
             ) : (
               newPosts.map((post) => (
                 <PostMainContainer key={post._id} post={post} newPosts={newPosts} />
@@ -112,7 +112,7 @@ const NewsFeed = () => {
           </Col>
           <Col md={3} className="recent-posts-container">
             {recentLoading ? (
-              <Spinner animation="grow" variant="info" />
+              <Spinner animation="border" variant="info" />
             ) : (
               <RecentPostsContainer posts={allPosts} newPosts={newPosts} />
             )}

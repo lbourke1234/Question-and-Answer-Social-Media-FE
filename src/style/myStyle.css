@@ -91,16 +91,13 @@ body {
   justify-content: end;
   position: fixed;
   right: 30px;
-  bottom: 30px;
+  bottom: 0;
+}
+.chat-main-container:hover {
+  cursor: pointer;
 }
 .chat-main-col {
-  background-color: lightblue;
-  width: 100px;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
+  margin-bottom: -16px;
 }
 .chat-main-col:hover {
   cursor: pointer;
@@ -109,7 +106,7 @@ body {
   width: 20vw;
   position: fixed;
   right: 60px;
-  bottom: 130px;
+  bottom: 60px;
   min-height: 500px;
   max-height: 75vh;
   overflow: auto;
@@ -295,6 +292,8 @@ body {
   font-weight: 800;
   display: flex;
   align-items: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 /* .post-spinner {
   font-size: 1000px;

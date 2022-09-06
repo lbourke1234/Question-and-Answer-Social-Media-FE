@@ -32,12 +32,13 @@ const ChatMain = ({
 
       <Container fluid className="chat-main-container">
         <Row>
-          {!openChat && (
-            <Alert onClick={toggleChat} className="chat-here-text" variant="light">
+          <Col className="chat-main-col">
+            <Alert onClick={toggleChat} className="chat-here-text" variant="info">
               Click here to open chat!
             </Alert>
-          )}
-          <Col className="chat-main-col chat-icon-colors" onClick={toggleChat}>
+          </Col>
+
+          {/* <Col className="chat-main-col chat-icon-colors" onClick={toggleChat}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-message-circle"
@@ -57,7 +58,7 @@ const ChatMain = ({
               <line x1="8" y1="12" x2="8" y2="12.01"></line>
               <line x1="16" y1="12" x2="16" y2="12.01"></line>
             </svg>
-          </Col>
+          </Col> */}
         </Row>
       </Container>
     </>
