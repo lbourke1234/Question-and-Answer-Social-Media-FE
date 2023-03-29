@@ -192,6 +192,15 @@ const Categories = () => {
       dispatch(setCategoriesAction(body))
     }
   }
+  const [color, setColor] = useState('white')
+
+  // useEffect(() => {
+  //   if (room === 'Free Speech') {
+  //     setColor('white')
+  //   } else if (room === 'Politics') {
+  //     setColor('black')
+  //   }
+  // }, [room])
 
   useEffect(() => {}, [])
 
@@ -205,13 +214,13 @@ const Categories = () => {
         style={{ backgroundImage: 'url(' + imageUrl + ')' }}
       >
         <Container className="jumbotron-text-container">
-          <h1>{room}</h1>
-          <p>{currentCategory.description}</p>
+          <h1 style={{ color: { color } }}>{room}</h1>
+          <p style={{ color: { color } }}>{currentCategory.description}</p>
         </Container>
       </Jumbotron>
       <Container className="wider-container">
         <Row>
-          <Col md={2}>
+          <Col md={2} className="categories-list-sticky">
             {allCategories.map((category) => (
               <LeftCategories key={category._id} category={category} />
             ))}

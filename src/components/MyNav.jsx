@@ -87,7 +87,12 @@ const MyNav = () => {
             </Nav.Link>
             <Nav.Link href="profile">
               {imageLoading ? (
-                <Spinner animation="border" variant="info" />
+                  <img
+                  style={{ height: '40px', width: '40px' }}
+                  src='https://th.bing.com/th/id/R.4788048f319dc48101678d9e69f5077e?rik=mylB9ertynbtQQ&pid=ImgRaw&r=0'
+                  alt="img"
+                  className="profile-image"
+                ></img>
               ) : profileData.avatar ? (
                 <img
                   style={{ height: '35px', width: '35px', borderRadius: '50%' }}

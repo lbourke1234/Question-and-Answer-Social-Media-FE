@@ -110,7 +110,7 @@ const NewsFeed = () => {
               <PostMainContainer key={post._id} post={post} />
             ))}
           </Col>
-          <Col md={3} className="recent-posts-container">
+          <Col md={3} className="recent-posts-container recent-posts-sticky">
             {recentLoading ? (
               <Spinner animation="border" variant="info" />
             ) : (

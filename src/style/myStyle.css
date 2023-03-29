@@ -49,11 +49,15 @@ body {
 }
 .categories-sticky {
   position: sticky;
-  top: 80px;
+  top: 125px;
+}
+.categories-list-sticky {
+  position: sticky;
+  top: 500px;
 }
 .recent-posts-sticky {
   position: sticky;
-  top: 80px;
+  top: 108px;
 }
 .jumbotron-text-container {
   display: flex;

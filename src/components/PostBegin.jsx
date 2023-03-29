@@ -3,7 +3,6 @@ import MakePostModal from './MakePostModal'
 import { useSelector } from 'react-redux/es/exports'
 import { useState } from 'react'
 import { useEffect } from 'react'
-// import askIcon from '../icons'
 
 const PostBegin = () => {
   const profileData = useSelector((state) => state.profile)
@@ -22,12 +21,17 @@ const PostBegin = () => {
       <Row>
         <Col md={1}>
           {imageLoading ? (
-            <Spinner animation="border" variant="info" />
+            <img
+            style={{ height: '40px', width: '40px' }}
+            src='https://th.bing.com/th/id/R.4788048f319dc48101678d9e69f5077e?rik=mylB9ertynbtQQ&pid=ImgRaw&r=0'
+            alt="img"
+            className="profile-image"
+          ></img>
           ) : (
             <img
               style={{ height: '40px', width: '40px' }}
               src={profileData.avatar}
-              alt="placeholder"
+              alt="img"
               className="profile-image"
             ></img>
           )}
